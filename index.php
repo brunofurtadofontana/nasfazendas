@@ -7,8 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/styles.css">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="js/script.js"></script>
   
 </head>
 <body>
@@ -17,7 +21,7 @@
 			<div class="logo col-md-3">
 				<img src="images/logo.png" width="60" />
 			</div>
-				
+				  
 	   <div class="search col-md-6">
 					<input type="text" class="form-control input-sm" maxlength="64" placeholder="Olá, o que você procura?" />
           <button class="btn">Buscar</button>
@@ -28,35 +32,32 @@
 				<span><a href="#"> \/ Olá Visitante</a></span>
 			</div>
 		</header>
-			<nav class="navbar navbar-inverse navbar-fixed-top" style="background:#275b2f;">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a href="">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a href="">HOME</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
+			<div id='cssmenu'>
+      <ul>
+         <li><a href='#'>Home</a></li>
+         <li class='active'><a href='#'>Máquinarios</a>
+            <ul>
+               <li><a href='#'>Tratores</a>
+                  <ul>
+                     <li><a href='#'>Pesados</a></li>
+                     <li><a href='#'>Colheitaderas</a></li>
+                     <li><a href='#'>Semeadoras</a></li>
+                  </ul>
+               </li>
+               <li><a href='#'>Arados</a>
+                  <ul>
+                     <li><a href='#'>Sub Product</a></li>
+                     <li><a href='#'>Sub Product</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+         <li><a href='#'>Agricultura</a></li>
+         <li><a href='#'>Pecuária</a></li>
+         <li><a href='#'>Agroindústria</a></li>
+         <li><a href='#'>Contato</a></li>
       </ul>
       </div>
-    </nav>
     <div class="banner">
       
     </div>
