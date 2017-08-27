@@ -7,23 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Bootstrap CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  
 </head>
 <body>
 	<div class="row-fluid">
 		<header>
-			<div class="logo">
+			<div class="logo col-md-3">
 				<img src="images/logo.png" width="60" />
 			</div>
 				
-	   <div class="search">
+	   <div class="search col-md-6">
 					<input type="text" class="form-control input-sm" maxlength="64" placeholder="Olá, o que você procura?" />
-
+          <button class="btn">Buscar</button>
 
 		 </div>
 				
-			<div class="user">
+			<div class="user col-md-3">
 				<span><a href="#"> \/ Olá Visitante</a></span>
 			</div>
 		</header>
@@ -60,25 +61,43 @@
       
     </div>
     <div class="bannerSec">
-      
+      <span class="title">Destaques</span>
     </div>
-    <div class="anuncios">
-
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-      <div class="destaque"></div>
-
+    <div class="anuncios row-fluid">
+      <div class="envelope">
+        <span class="title">Anuncios</span>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-2"></div>
+      </div>
+      <br>
+      <div class="load">
+          <img src="images/loader.gif"  />
+      </div>
     </div>
-
-
+    <div class="row social">
+          <div class="face col-md-4">
+            <span class="title">Redes Sociais</span>
+          </div>
+          <div class="categorias col-md-4">
+            <span class="title">Categorias</span>
+          </div>
+          <div class="news col-md-4">
+            <span class="title">Cadastre-se</span>
+          </div>
+    </div>
+    <footer>
+      <center>
+        <span>&copy;Todos os direitos reservados</span>
+      </center>
+    </footer>
 	</div><!-- row-fluid -->
 
 	<!-- jQuery (necessario para os plugins Javascript do Bootstrap) -->

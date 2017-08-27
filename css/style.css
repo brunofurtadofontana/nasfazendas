@@ -7,16 +7,33 @@ outline: 0;
 text-decoration: none;
 cursor: pointer;
 }
-.title{
-    width:100%;
-    height: auto;
-    padding:10px 10px;
-    color:#275b2f;
+body{
+    margin: 0 auto;
+    padding: 0 auto;
     font-family: Arial;
-    border-bottom: 1px solid #275b2f;
+    background:#f2f4f5;
+}
+.title{
+    width:97%;
+    padding:10px 10px 
+    height:auto;
+    color:#275b2f;
+    font-size:18px;
+    font-family: Arial;
+    border-bottom: 2px solid #275b2f;
     float:left;
-    border:1px solid;
-    display: block;
+    margin:10px;
+}
+.subtitle{
+    width:97%;
+    padding:10px 10px 
+    height:auto;
+    color:#275b2f;
+    font-size:14px;
+    font-family: Arial;
+    border-bottom: 2px solid #275b2f;
+    float:left;
+    margin:10px;   
 }
 header{
     margin:0 auto;
@@ -25,16 +42,18 @@ header{
     height:90px;
 }
 .logo{
-    margin:10px 60px;
     width:10%;
     height: auto;
     float:left;
+    text-align: center;
+    margin-top:10px;
 }
 .search {
     margin:0 auto;
     padding:0 auto;
     width: 60%;
-    height: auto;
+    height: 90px;
+    float:left;
  
 }
 .search input{
@@ -46,34 +65,73 @@ header{
 
 .user{
     width:10%;
-    float:right;
-    margin:30px 60px; 
+    float:left; 
+    margin-top:30px;
+    text-align: center;
 }
 
 .banner{
+    padding:10px 10px;
     width:100%;
     height:300px;
     background: #f4f5f6;
     float:left;
 }
 .bannerSec{
+    padding:10px 10px;
     width:100%;
     height:250px;
     background: #ccc;
     float:left;
 }
 .anuncios{
+    padding-left:10px; 
     width:100%;
     height:450px;
     background: #f4f5f6;
     float:left;
-    display: flex;
+    display:table;
 }
 .destaque{
-    margin:10px 10px;
-    width:150px;
-    height: 250px;
+    margin:15px 15px;
+    width: 200px;
+    height:300px;
     background: #ccc;
-    
-    
+    float:left;    
+}
+.load{
+    margin: 0 auto;
+    padding: 0 auto;
+    width:100%;
+    height:auto;
+    text-align: center;
+    float:left;
+}
+.social{
+    width:101%;
+    height: 300px;
+    border-top:5px solid #ccc;
+    background-color: #fff;
+    float:left;
+}
+footer{
+    color:#fff;
+    padding:10px;
+    width:100%;
+    height:50px;
+    background-color: #275b2f;
+    float:left;
+}
+.envelope{
+    margin:0 auto;
+    padding:0 auto;
+    width:90%;
+    height: auto;
+}
+.btn{
+    position:absolute;
+    height: 35px;
+    background: #275b2f;
+    margin-top:25px;
+    color:#fff;
 }
