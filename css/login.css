@@ -45,12 +45,15 @@ body {
 }
 
 #top-image {
-background:url('https://wallpaperscraft.com/image/tractor_field_arable_land_agriculture_14560_2560x1600.jpg') -25px -50px;
-position:fixed ;
-top:0;
-width:100%;
-z-index:0;
+  background:url('https://wallpaperscraft.com/image/tractor_field_arable_land_agriculture_14560_2560x1600.jpg') -25px -50px;
+  position:fixed ;
+  top:0;
+  width:100%;
+  z-index:0;
   height:100%;
   background-size: calc(100% + 50px);
   filter: blur(6px);
+}
+.cadas input{
+  margin: 10px 10px;
 }

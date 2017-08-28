@@ -76,14 +76,63 @@
         <label for="inputPassword" class="sr-only">Senha</label>
         <input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
         <div class="checkbox">
+          
           <label>
-            <input type="checkbox" value="remember-me"> Lembrar-me
+            <a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Cadastre-se</a>
           </label>
+          
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
 
     </div> <!-- /container -->
+    <!-- Large modal -->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+     <div class="modal-header">
+      <h5 class="modal-title">Cadastro usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <small>Tipo de cadastro</small>
+        <form class="cadas" action="tratadados.php" method="post">
+            <input type="radio" name="tipo" value="pessoafisica">Pessoa Física
+            <input type="radio" name="tipo" value="pessoajuridica">Pessoa Jurídica <br>
+            <div class="form-group">
+              <input class="form-control" type="text" name="nome" placeholder="Nome" required="required" />
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="email" name="email" placeholder="Email" required="required"  />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                  <input class="form-control" type="text" name="fone" placeholder="Telefone" required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="fonecom" placeholder="Telefone Comercial" required="required" />
+                </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="cpf" placeholder="CPF" required="required" />
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="cnpj" placeholder="CNPJ" required="required" />
+            </div>
+            
+            <div class="form-group">
+              <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
+            </div>
+            <div class="form-group">
+              <input class="btn btn-success" type="submit" value="Cadastrar" />
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
