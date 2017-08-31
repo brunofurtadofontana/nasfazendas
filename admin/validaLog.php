@@ -1,5 +1,5 @@
 <?php 
-	require_once("file/conexao.php");
+	require_once("files/conexao.php");
 
 /*	$usuario=trim(htmlspecialchars($_POST['usuario']));
 	$senha=trim(htmlspecialchars(md5($_POST['senha'])));

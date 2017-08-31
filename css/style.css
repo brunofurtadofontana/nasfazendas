@@ -93,9 +93,9 @@ header{
     display:table;
 }
 .destaque{
-    margin:15px 15px;
+    margin:5px 15px;
     width: 200px;
-    height:300px;
+    height:400px;
     background: #ccc;
     float:left;    
 }
@@ -130,6 +130,7 @@ footer{
     padding:0 auto;
     width:90%;
     height: auto;
+
 }
 .btn{
     position:absolute;

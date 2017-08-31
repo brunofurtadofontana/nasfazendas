@@ -1,28 +1,7 @@
 <?php
   error_reporting(0);
   $erro=$_GET['erro'];
-  if(isset($erro)){
-    switch ($erro) {
-      case 0:
-        echo"<div style='width:99%;height:30px;background:#0099cc;border-radius:10px;border:1px solid blue;color:#fff;font-family:Arial;margin:5px 5px;padding-top:10px;'><center>Cadastro efetuado com sucesso!!!</center></div>";
-        break;
-      case 1:
-        echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao fazer o Login!! Senha inválida</b></div>";
-      break;
-      case 2:
-        echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao fazer o Login!! Usuário inválido</b></div>";
-      break;
-      case 3:
-          echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro!! Você deve estar logado para acessar o conteúdo.</b></div>";
-      break;
-      case 4:
-          echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Você foi desconectado!</b></div>";
-      break;
-      default:
-        echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Algo estranho aconteceu!</b></div>";
-        break;
-   }
- }
+  
 ?>
 <html>
 <head>
@@ -61,20 +40,67 @@
      });
 
 </script>
+<script type="text/javascript">
+   $(document).ready(function(){
+      $("#cnpj").hide(100);
+       $("#cpf").show();//habilita cpf
+       $("#fantasia").hide(100);
+     $("#pessoafisica").click(function(){//clicando em pessoa fisica
+       //$("#cnpj").attr("disabled",true);//desabilita cnpj
+       $("#cnpj").hide(100);
+       $("#cpf").show();//habilita cpf
+       $("#fantasia").hide(100);
+     });
+     $("#pessoajuridica").click(function(){//clicando em pessoa juridica
+       $("#cnpj").show();//habilita cnpj
+       $("#cpf").hide(100);
+       $("#fantasia").show();
+       //$("#cpf").attr("disabled",true);//desabilita cpf
+   });
+ });
+   
+  </script>
 </head>
 <body >
 <div id="top-image"></div>
 	<div class="container">
   
       <p>
-        <center><img src="../images/logo.png" width="200" /></center>
+        <center><img src="../images/logo.png" width="160" /></center>
       </p>
       <form class="form-signin" action="validaLog.php" method="post">
+      <?php
+         if(isset($erro)){
+          switch ($erro) {
+            case 0:
+              echo"<div style='width:99%;height:30px;background:#0099cc;border-radius:10px;border:1px solid blue;color:#fff;font-family:Arial;margin:5px 5px;padding-top:10px;'><center>Cadastro efetuado com sucesso!!!</center></div>";
+              break;
+            case 1:
+              echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Usuário ou Senha inválida</b></div>";
+            break;
+            case 2:
+              echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Usuario ou senha inválida</b></div>";
+            break;
+            case 3:
+                echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro!! Você deve estar logado para acessar o conteúdo.</b></div>";
+            break;
+            case 4:
+                echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Você foi desconectado!</b></div>";
+            break;
+            default:
+              echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Algo estranho aconteceu!</b></div>";
+              break;
+         }
+       }
+         ?>
         <h2 class="form-signin-heading">Login</h2>
-        <label for="inputEmail" class="sr-only">Usuário</label>
-        <input name="usuario" type="email" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
-        <label for="inputPassword" class="sr-only">Senha</label>
-        <input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <div class="form-group">
+          <input name="usuario" type="email" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        </div>
         <div class="checkbox">
           
           <label>
@@ -98,10 +124,12 @@
         <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <small>Tipo de cadastro</small>
+        
         <form class="cadas" action="tratadados.php" method="post">
-            <input type="radio" name="tipo" value="pessoafisica">Pessoa Física
-            <input type="radio" name="tipo" value="pessoajuridica">Pessoa Jurídica <br>
+            <small style="padding:10px; ">Tipo de cadastro</small><br>
+
+            <input type="radio" name="tipo" id="pessoafisica" value="pessoafisica" checked="checked">Pessoa Física
+            <input type="radio" name="tipo" id="pessoajuridica" value="pessoajuridica">Pessoa Jurídica <br>
             <div class="form-group">
               <input class="form-control" type="text" name="nome" placeholder="Nome" required="required" />
             </div>
@@ -117,12 +145,14 @@
                 </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cpf" placeholder="CPF" required="required" />
+              <input class="form-control" type="text" name="cpf" id="cpf"placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cnpj" placeholder="CNPJ" required="required" />
+              <input class="form-control" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" required="required" />
             </div>
-            
+            <div class="form-group">
+              <input class="form-control" type="text" name="fantasia" id="fantasia" placeholder="Nome Fantasia" required="required" />
+            </div>
             <div class="form-group">
               <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
             </div>

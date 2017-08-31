@@ -19,7 +19,9 @@
 	<div class="row-fluid">
 		<header>
 			<div class="logo col-md-3">
-				<img src="images/logo.png" width="60" />
+				<img src="images/logo.png" width="70" />
+        <!--  <img src="images/logo2.png" width="160" />-->
+        <!--<img src="images/logo3.png" width="110" />-->
 			</div>
 				  
 	   <div class="search col-md-6">
@@ -67,16 +69,18 @@
     <div class="anuncios row-fluid">
       <div class="envelope">
         <span class="title">Anuncios</span>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
-        <div class="destaque col-md-2"></div>
+        <div class="destaque col-md-3">
+            <div></div>
+        </div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
+        <div class="destaque col-md-3"></div>
       </div>
       <br>
       <div class="load">
