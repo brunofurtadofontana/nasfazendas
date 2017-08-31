@@ -145,7 +145,7 @@
                 </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cpf" id="cpf"placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
+              <input class="form-control" type="text" name="cpf" id="cpf"  placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
             </div>
             <div class="form-group">
               <input class="form-control" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" required="required" />
