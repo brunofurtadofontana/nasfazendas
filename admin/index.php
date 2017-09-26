@@ -156,6 +156,8 @@
             <div class="form-group">
               <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
             </div>
+            <input class="form-control" type="password" name="confirmarSenha" placeholder="Confirmar Senha" required="required"  />
+            </div>
             <div class="form-group">
               <input class="btn btn-success" type="submit" value="Cadastrar" />
             </div>
