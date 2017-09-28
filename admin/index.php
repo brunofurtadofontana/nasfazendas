@@ -5,19 +5,19 @@
 ?>
 <html>
 <head>
-	<title>Gestão de Clientes</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+  <title>Gestão de Clientes</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../css/login.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../css/login.css">
 
-	<!-- Latest compiled and minified JavaScript -->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Latest compiled and minified JavaScript -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<meta charset="utf-8">
+  <script src="../js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,20 +42,14 @@
 </script>
 <script type="text/javascript">
    $(document).ready(function(){
-      $("#cnpj").hide(100);
-       $("#cpf").show();//habilita cpf
-       $("#fantasia").hide(100);
+    $("#pessoajuridicaform").hide(100);
      $("#pessoafisica").click(function(){//clicando em pessoa fisica
-       //$("#cnpj").attr("disabled",true);//desabilita cnpj
-       $("#cnpj").hide(100);
-       $("#cpf").show();//habilita cpf
-       $("#fantasia").hide(100);
+       $("#pessoajuridicaform").hide(100);
+       $("#pessoafisicaform").show(100);
      });
      $("#pessoajuridica").click(function(){//clicando em pessoa juridica
-       $("#cnpj").show();//habilita cnpj
-       $("#cpf").hide(100);
-       $("#fantasia").show();
-       //$("#cpf").attr("disabled",true);//desabilita cpf
+        $("#pessoafisicaform").hide(100);
+       $("#pessoajuridicaform").show();//habilita cnpj
    });
  });
    
@@ -63,7 +57,7 @@
 </head>
 <body >
 <div id="top-image"></div>
-	<div class="container">
+  <div class="container">
   
       <p>
         <center><img src="../images/logo.png" width="160" /></center>
@@ -124,12 +118,13 @@
         <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        
-        <form class="cadas" action="tratadados.php" method="post">
-            <small style="padding:10px; ">Tipo de cadastro</small><br>
-
-            <input type="radio" name="tipo" id="pessoafisica" value="pessoafisica" checked="checked">Pessoa Física
+        <div style="width:auto;height:30px;padding-left:10px;">
+          <small style="padding:10px; ">Tipo de cadastro</small><br>  
+          <input type="radio" name="tipo" id="pessoafisica" value="pessoafisica" checked="checked">Pessoa Física
             <input type="radio" name="tipo" id="pessoajuridica" value="pessoajuridica">Pessoa Jurídica <br>
+         </div>
+        <form class="cadas" action="files/Funcoes.php?funcao=1" method="post" id="pessoafisicaform">
+            
             <div class="form-group">
               <input class="form-control" type="text" name="nome" placeholder="Nome" required="required" />
             </div>
@@ -143,20 +138,64 @@
                 <div class="col-6">
                   <input class="form-control" type="text" name="fonecom" placeholder="Telefone Comercial" required="required" />
                 </div>
+                <div class="col-4">
+                  <input class="form-control" type="text" name="cep" placeholder="CEP" required="required" />
+                </div>
+                <div class="col-8">
+                  <input class="form-control" type="text" name="rua" placeholder="Rua, Av..." required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="numero" placeholder="Número" required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="complemento" placeholder="Complemento, Apt, casa..." required="required" />
+                </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cpf" id="cpf"  placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
+              <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" required="required" />
+              <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
+            </div>
+            <div class="form-group">
+              <input class="btn btn-success" type="submit" value="Cadastrar" />
+            </div>
+        </form>
+
+         <form class="cadas" action="files/Funcoes.php?funcao=2" method="post" id="pessoajuridicaform">
+            
+           
+            <div class="form-group">
+              <input class="form-control" type="email" name="email" placeholder="Email" required="required"  />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                  <input class="form-control" type="text" name="fone" placeholder="Telefone" required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="fonecom" placeholder="Telefone Comercial" required="required" />
+                </div>
+                <div class="col-4">
+                  <input class="form-control" type="text" name="cep" placeholder="CEP" required="required" />
+                </div>
+                <div class="col-8">
+                  <input class="form-control" type="text" name="rua" placeholder="Rua, Av..." required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="numero" placeholder="Número" required="required" />
+                </div>
+                <div class="col-6">
+                  <input class="form-control" type="text" name="complemento" placeholder="Complemento, Apt, casa..." required="required" />
+                </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" title="Digite o CNPJ no formato 00.000.000/0000.00" name="cnpj" id="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" placeholder="CNPJ" required="required" />
             </div>
             <div class="form-group">
               <input class="form-control" type="text" name="fantasia" id="fantasia" placeholder="Nome Fantasia" required="required" />
             </div>
             <div class="form-group">
               <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
-            </div>
-            <input class="form-control" type="password" name="confirmarSenha" placeholder="Confirmar Senha" required="required"  />
             </div>
             <div class="form-group">
               <input class="btn btn-success" type="submit" value="Cadastrar" />
