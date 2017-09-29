@@ -81,6 +81,9 @@
             case 4:
                 echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Você foi desconectado!</b></div>";
             break;
+            case 5:
+              echo"<div class='alert alert-success' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Cadastro efetuado.<br> Verifique a caixa de entrada do seu email.</b></div>";
+              break;
             default:
               echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Algo estranho aconteceu!</b></div>";
               break;

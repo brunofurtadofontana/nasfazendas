@@ -30,12 +30,13 @@
 		$gravaSenha= htmlspecialchars(trim($_POST["senha"]));//salva na variavel $gravaSenhaADM a senha do admim
 		$gravaSenha2=md5($gravaSenha);//criptografa a senha
 		if($gravalog && $gravaSenha != ""){
-			$sql = mysql_query("SELECT * FROM usuarios WHERE email='$gravalog'");//seleciona o banco dados loginfum nome logADM
+			$sql = mysql_query("SELECT * FROM usuario WHERE usu_email='$gravalog'");//seleciona o banco dados loginfum nome logADM
 			$cont = mysql_num_rows($sql);//cont recebe a a linha selecionada
 				while($linha = mysql_fetch_array($sql)){
 					$id = $linha['idusuarios'];
-					$access = $linha['acesso'];
-					$senha_db = $linha["senha"];	
+					//$access = $linha['acesso'];
+					$gravaPriv = $linha['privilegio'];
+					$senha_db = $linha["usu_senha"];	
 					//$ativo = $linha["user_ativo"];
 					//echo $ativo;
 				}
@@ -43,7 +44,7 @@
 					header("Location:index.php?erro=2");
 				}
 				else{	
-					if($senha_db != $gravaSenha){//se a senha não for igual a que o admim cadastrou
+					if($senha_db != $gravaSenha2){//se a senha não for igual a que o admim cadastrou
 					header("Location:index.php?erro=1");
 					}
 					
@@ -51,11 +52,12 @@
 							session_start();
 							$_SESSION["LOGIN_USUARIO"]=$gravalog;
 							$_SESSION["SENHA_USUARIO"]=$gravaSenha;
+							$_SESSION["PRIVILEGIO"]=$gravaPriv;
 
-							$access++;
+							/*$access++;
 							$atualiza = mysql_query("UPDATE  usuarios 
 													SET acesso = '$access' 
-													WHERE idusuarios = '$id' ")or die(mysql_error());
+													WHERE idusuarios = '$id' ")or die(mysql_error());*/
 							header("location:home.php");			
 							//session_destroy();
 						}
