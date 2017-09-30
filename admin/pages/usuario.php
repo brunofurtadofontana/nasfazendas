@@ -307,7 +307,7 @@
                         <a href="home.php?go=edit&id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
-                        <a href="home.php?go=del&id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
+                        <a href="../files/excluir.php?id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                         <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">

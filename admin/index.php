@@ -90,9 +90,9 @@
          }
        }
          ?>
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading"></h2>
         <div class="form-group">
-          <input name="usuario" type="email" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
+          <input name="usuario" type="text" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
         </div>
 
         <div class="form-group">
