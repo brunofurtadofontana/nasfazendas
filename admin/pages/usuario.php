@@ -285,7 +285,7 @@
                     <th style="text-align:center;">Ação</th>
                 </tr>
                 <?php 
-                $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pessoa_jur as pj WHERE u.usu_id = pf.usuario_usu_id OR u.usu_id = pj.usuario_usu_id LIMIT 40")or die(mysql_error());
+                $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pessoa_jur as pj WHERE u.usu_id = pf.usuario_usu_id  OR u.usu_id = pj.usuario_usu_id LIMIT 40")or die(mysql_error());
                 $total = mysql_num_rows($res);
                 while($resultado = mysql_fetch_assoc($res)){
                     $id = $resultado['usu_id'];
