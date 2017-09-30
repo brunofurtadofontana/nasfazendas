@@ -267,8 +267,68 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-12">
+                <form action="" method="post">
+                    <label>Buscar</label>
+                    <input type="text" class="form-control" name="buscar" placeholder="Digite um nome/cpf..." required="required">
+                    <button type="submit" value="buscar" class="btn btn-success">Buscar</button>
+                </form>
+                <?php
+                    if(!isset($_POST['buscar'])){
+                ?>
+                    <table class="table table-bordered" style="font-size:14px;margin-top:20px;">
+                <tr>
+                    <th style="text-align:center;">Nome</th>
+                    <th style="text-align:center;">Email</th>
+                    <th style="text-align:center;">CPF/CNPJ</th>
+                    <th style="text-align:center;" >Privilégios</th>
+                    <th style="text-align:center;">Ação</th>
+                </tr>
+                <?php 
+                $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pessoa_jur as pj WHERE u.usu_id = pf.usuario_usu_id OR u.usu_id = pj.usuario_usu_id LIMIT 40")or die(mysql_error());
+                $total = mysql_num_rows($res);
+                while($resultado = mysql_fetch_assoc($res)){
+                    $id = $resultado['usu_id'];
+                    $nomeFisica = $resultado['pessoaFisica_nome'];
+                    $nomeJur = $resultado['pessoa_jur_nomeFantasia'];
+                    $email= $resultado['usu_email'];
+                    $cpf = $resultado['pessoaFisica_cpf'];
+                    $cnpj = $resultado['pessoaJur_cnpj'];
+                    $priv = $resultado['privilegio'];
+                
+                ?>
+                <tr>
                     
+                    <th > <?php if($nomeFisica != "")echo $nomeFisica;else $nomeJur; ?> </th>
+                    <th > <?php echo $email; ?> </th>
+                    <th > <?php if($cpf != "")echo $cpf;else $cnpj;  ?> </th> 
+                    <th > <?php echo $priv; ?> </th>
+                    <th style="text-align:center;">
+                        <a href="home.php?go=edit&id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                        <a href="home.php?go=del&id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                        <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        </a>
+                        <a href="home.php?go=email&id=<?php echo $id; ?>" data-toggle="modal" title="Enviar Email">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        </a>
+                    </th>
+                </tr>
+                <?php } ?>
+            </table>
+            <?php 
+                }//fim if
+                else{
+            ?>
+                <h2>Resultado da busca...</h2>
+                <a href="usuario.php"><button class="btn btn-primary" >Voltar</button></a>
+            <?php    
+                }//fim else
+            ?>
                 </div><!-- /#col-lg3 -->
             </div> <!-- /#row -->
    

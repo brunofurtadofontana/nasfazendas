@@ -268,7 +268,31 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-6">
-                   <center><button class="btn btn-large btn-success"><i class="fa fa-cloud-upload fa-fw"></i> Cadastrar novo anúncio?</button></center>
+                   <center>
+                        <button class="btn btn-large btn-success" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-cloud-upload fa-fw"></i> Cadastrar novo anúncio?
+                        </button>
+                   </center>
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cadastrar novo anúncio</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
 
                 </div><!-- /#col-lg12 -->
             </div> <!-- /#row -->
