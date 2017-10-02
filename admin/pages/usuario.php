@@ -325,6 +325,13 @@
                 else{
             ?>
                 <h2>Resultado da busca...</h2>
+                <?php
+                    $info = $_POST['buscar'];
+                    $res = mysql_query("SELECT * FROM usuario left join pessoa_fisica on usuario.usu_id = pessoa_fisica.usuario_usu_id left join pessoa_jur on usuario.usu_id = pessoa_jur.usuario_usu_id AND ( pessoaFisica_nome LIKE '%$info') ");
+                    while($show=mysql_fetch_assoc($res)):
+                        echo $show['pessoaFisica_cpf']."<br>";
+                    endwhile;
+                ?>
                 <a href="usuario.php"><button class="btn btn-primary" >Voltar</button></a>
             <?php    
                 }//fim else

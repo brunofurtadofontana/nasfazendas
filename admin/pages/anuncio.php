@@ -287,21 +287,27 @@
                             </select>
                             <label>Escolha foto</label>
                             <input type="file" name="imageURL[]" id="imageURL" multiple />
-                            <label>Pagamento</label>
-                            
+                            <label>Estado</label>
+                            <select name="estado" class="form-control">
+                                <option>Escolha um estado</option>
+                            </select>
+                            <label>cidade</label>
+                            <select name="cidade" class="form-control">
+                                <option>Escolha uma cidade</option>
+                            </select>
                         </form>
                 </div><!-- /#col-lg12 -->
             </div> <!-- /#row -->
-   
-<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-<form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
-<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-<input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
-<input type="hidden" name="iot" value="button" />
-<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-</form>
-<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
-<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                    <label>Pagamento</label>
+                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                    <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                    <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
+                    <input type="hidden" name="iot" value="button" />
+                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                    </form>
+                    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
