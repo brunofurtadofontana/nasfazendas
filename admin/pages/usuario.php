@@ -285,7 +285,7 @@
                     <th style="text-align:center;">Ação</th>
                 </tr>
                 <?php 
-                $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pessoa_jur as pj WHERE u.usu_id = pf.usuario_usu_id  OR u.usu_id = pj.usuario_usu_id LIMIT 40")or die(mysql_error());
+                $res = mysql_query("SELECT * FROM usuario left join pessoa_fisica on usuario.usu_id = pessoa_fisica.usuario_usu_id left join pessoa_jur on usuario.usu_id = pessoa_jur.usuario_usu_id LIMIT 40")or die(mysql_error());
                 $total = mysql_num_rows($res);
                 while($resultado = mysql_fetch_assoc($res)){
                     $id = $resultado['usu_id'];
@@ -299,9 +299,9 @@
                 ?>
                 <tr>
                     
-                    <th > <?php if($nomeFisica != "")echo $nomeFisica;else $nomeJur; ?> </th>
+                    <th > <?php if($nomeJur == NULL)echo $nomeFisica; else echo $nomeJur; ?> </th>
                     <th > <?php echo $email; ?> </th>
-                    <th > <?php if($cpf != "")echo $cpf;else $cnpj;  ?> </th> 
+                    <th > <?php if($cnpj == NULL)echo $cpf;else echo $cnpj;  ?> </th> 
                     <th > <?php echo $priv; ?> </th>
                     <th style="text-align:center;">
                         <a href="home.php?go=edit&id=<?php echo $id; ?>" data-toggle="modal" title="Editar">

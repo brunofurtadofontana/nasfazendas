@@ -273,18 +273,8 @@
                             <i class="fa fa-cloud-upload fa-fw"></i> Cadastrar novo anúncio?
                         </button>
                    </center>
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog modal-lg">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cadastrar novo anúncio</h4>
-                      </div>
-                      <div class="modal-body">
-                        <form action="" method="post">
+                 <form action="" method="post">
                             <label>Título do anúncio</label>
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
@@ -300,24 +290,15 @@
                             <label>Pagamento</label>
                             
                         </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
                 </div><!-- /#col-lg12 -->
             </div> <!-- /#row -->
    
 <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
 <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
 <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-<input type="hidden" name="code" value="9B7884531D1D4BBDD43E9F90940F2BCB" />
+<input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
 <input type="hidden" name="iot" value="button" />
-<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/205x30-pagar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
 </form>
 <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
 <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->

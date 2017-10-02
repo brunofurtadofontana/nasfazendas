@@ -267,7 +267,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-md-10 ">
+                <div class="col-md-12 ">
                     <form action="../files/Funcoes.php?funcao=3" method="post">
                         <input type="text" class="form-control" name="nome" placeholder="Nome da Categoria" required="required"/>
                         <br>
