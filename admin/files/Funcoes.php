@@ -16,6 +16,9 @@ switch ($funcao) {
 	case 4:
 		adicionarSubCat();
 		break;
+	case 5:
+		adicionarAnuncio();
+		break;
 	default:
 		# code...
 		break;
@@ -41,11 +44,13 @@ function cadastraUsuarioCpf(){
 										usu_email,
 										usu_foneCel,
 										usu_foneCom,
+										privilegio,
 										usu_senha)
 										VALUES(
 										'$usu_email',
 										'$usu_foneCel',
 										'$usu_foneCom',
+										'Anunciante',
 										'$usu_senha')")or die(mysql_error());
 
 		$res = mysql_query("SELECT max(usu_id)as maior from usuario")or die(mysql_error());
@@ -71,7 +76,7 @@ function cadastraUsuarioCpf(){
 															'$usu_endereco',
 															'$usu_cep',
 															'$usu_numero',
-															'usu_complemento',
+															'$usu_complemento',
 															'$idUsuario')")or die(mysql_error());
 	
 		if(!mysql_error()){
@@ -102,11 +107,13 @@ function cadastraUsuarioCnpj(){
 													usu_email,
 													usu_foneCel,
 													usu_foneCom,
+													privilegio,
 													usu_senha)
 													VALUES(
 													'$usu_email',
 													'$usu_foneCel',
 													'$usu_foneCom',
+													'Anunciante',
 													'$usu_senha')")or die(mysql_error());
 
 		$res = mysql_query("SELECT max(usu_id)as maior from usuario")or die(mysql_error());
@@ -132,7 +139,7 @@ function cadastraUsuarioCnpj(){
 														'$usu_endereco',
 														'$usu_cep',
 														'$usu_numero',
-														'usu_complemento',
+														'$usu_complemento',
 														'$idUsuario')")or die(mysql_error());
 	
 		if(!mysql_error()){
@@ -163,5 +170,9 @@ function adicionarSubCat(){
 		echo header("location:../pages/categoria.php?sts=1");
 	}
 	else echo header("location:../pages/categoria.php?sts=2");
+
+}
+function adicionarAnuncio(){
+	
 }
 ?>

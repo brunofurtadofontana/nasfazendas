@@ -280,13 +280,16 @@
                             <label>Descrição</label>
                             <textarea name="descricao" class="form-control"></textarea>
                             <label>Valor</label>
-                            <input type="text" name="valor" class="form-control"/>
+                            <input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor ="100" class="form-control currency" name="valor" placeholder="R$ Valor do produto">
                             <label>Categoria</label>
                             <select name="categoria" class="form-control">
                                 <option>Escolha uma categoria</option>
                             </select>
-                            <label>Escolha foto</label>
-                            <input type="file" name="imageURL[]" id="imageURL" multiple />
+                             <label>Escolha foto</label>
+                            <div style="width:98%;height:150px;background-color: #f6f7f8;padding:10px 10px;margin:10px 10px;border:2px dashed #ccc; display:table;">
+                                <br><br>
+                                <center><input type="file"  name="files[]" id="imageURL" multiple /></center>
+                            </div>
                             <label>Estado</label>
                             <select name="estado" class="form-control">
                                 <option>Escolha um estado</option>
