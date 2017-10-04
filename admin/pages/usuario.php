@@ -285,9 +285,13 @@
                     <th style="text-align:center;">Ação</th>
                 </tr>
                 <?php 
+<<<<<<< HEAD
                 /*$res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pessoa_jur as pj WHERE u.usu_id = pf.usuario_usu_id  OR u.usu_id = pj.usuario_usu_id LIMIT 40")or die(mysql_error());*/
 
                 $res = mysql_query("SELECT * from usuario")or die(mysql_error());
+=======
+                $res = mysql_query("SELECT * FROM usuario left join pessoa_fisica on usuario.usu_id = pessoa_fisica.usuario_usu_id left join pessoa_jur on usuario.usu_id = pessoa_jur.usuario_usu_id LIMIT 40")or die(mysql_error());
+>>>>>>> 94b5b3d300c3519d2fef66cb8eff65a88f04174a
                 $total = mysql_num_rows($res);
                 while($resultado = mysql_fetch_assoc($res)){
                     $id = $resultado['usu_id'];
@@ -301,9 +305,9 @@
                 ?>
                 <tr>
                     
-                    <th > <?php if($nomeFisica != "")echo $nomeFisica;else $nomeJur; ?> </th>
+                    <th > <?php if($nomeJur == NULL)echo $nomeFisica; else echo $nomeJur; ?> </th>
                     <th > <?php echo $email; ?> </th>
-                    <th > <?php if($cpf != "")echo $cpf;else $cnpj;  ?> </th> 
+                    <th > <?php if($cnpj == NULL)echo $cpf;else echo $cnpj;  ?> </th> 
                     <th > <?php echo $priv; ?> </th>
                     <th style="text-align:center;">
                         <a href="../files/editar.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
@@ -327,6 +331,13 @@
                 else{
             ?>
                 <h2>Resultado da busca...</h2>
+                <?php
+                    $info = $_POST['buscar'];
+                    $res = mysql_query("SELECT * FROM usuario left join pessoa_fisica on usuario.usu_id = pessoa_fisica.usuario_usu_id left join pessoa_jur on usuario.usu_id = pessoa_jur.usuario_usu_id AND ( pessoaFisica_nome LIKE '%$info') ");
+                    while($show=mysql_fetch_assoc($res)):
+                        echo $show['pessoaFisica_cpf']."<br>";
+                    endwhile;
+                ?>
                 <a href="usuario.php"><button class="btn btn-primary" >Voltar</button></a>
             <?php    
                 }//fim else
