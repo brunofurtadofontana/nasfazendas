@@ -35,7 +35,7 @@
 				while($linha = mysql_fetch_array($sql)){
 					$id = $linha['idusuarios'];
 					//$access = $linha['acesso'];
-					$gravaPriv = $linha['privilegio'];
+					//$gravaPriv = $linha['privilegio'];
 					$senha_db = $linha["usu_senha"];	
 					//$ativo = $linha["user_ativo"];
 					//echo $ativo;
@@ -52,7 +52,7 @@
 							session_start();
 							$_SESSION["LOGIN_USUARIO"]=$gravalog;
 							$_SESSION["SENHA_USUARIO"]=$gravaSenha;
-							$_SESSION["PRIVILEGIO"]=$gravaPriv;
+							//$_SESSION["PRIVILEGIO"]=$gravaPriv;
 
 							/*$access++;
 							$atualiza = mysql_query("UPDATE  usuarios 

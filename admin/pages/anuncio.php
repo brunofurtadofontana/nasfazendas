@@ -274,7 +274,7 @@
                         </button>
                    </center>
 
-                 <form action="" method="post">
+                 <form action="Funcoes.php?funcoe=5" method="post">
                             <label>Título do anúncio</label>
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
