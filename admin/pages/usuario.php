@@ -7,7 +7,7 @@
     $show = mysql_fetch_assoc($res);
     $nomePF = $show['pessoaFisica_nome'];
    // $nomeJUR = $show['pessoa_jur_nomeFantasia'];
-
+    
 
 ?>
 <!DOCTYPE html>
@@ -50,6 +50,7 @@
 <body>
 
     <div id="wrapper">
+        
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background: #275b2f;">
@@ -261,6 +262,24 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
+                        <?php 
+
+                        function fadeout(){
+                            
+                        }
+
+                    $erro = $_GET['error'];
+                    switch ($erro) {
+                    case 0:
+                      echo"<div class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+                      break;
+                    case 1:
+                      echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></div>";
+                    break;
+         }
+
+
+        ?>
                     <h1 class="page-header">Gerenciar Usuário</h1>
                 </div>
                 <!-- /.col-lg-12 -->
