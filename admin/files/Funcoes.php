@@ -18,7 +18,14 @@ switch ($funcao) {
         adicionarSubCat();
         break;
     case 5:
+<<<<<<< HEAD
         adicionarAnuncio();
+=======
+        
+        break;
+    case 6:
+        alterar();
+>>>>>>> origin/master
         break;
     default:
         # code...
@@ -158,6 +165,7 @@ function adicionarCategoria() {
         echo header("location:../pages/categoria.php?sts=2");
 }
 
+<<<<<<< HEAD
 function adicionarSubCat(){
 	$id=$_GET['id'];
 	$sub = htmlspecialchars(trim($_POST['subcategoria']));
@@ -168,6 +176,80 @@ function adicionarSubCat(){
 		echo header("location:../pages/categoria.php?sts=1");
 	}
 	else echo header("location:../pages/categoria.php?sts=2");
+=======
+function adicionarSubCat() {
+    $id = $_GET['id'];
+    $sub = htmlspecialchars(trim($_POST['subcategoria']));
+    $nome = htmlspecialchars(trim($_POST['nome']));
+    //$nome = "Atividade ".$nome;
+    $res = mysql_query("INSERT INTO categoria(categoria_nome,id_pai) VALUES( '$nome','$sub')")or die(mysql_error());
+    if ($res) {
+        echo header("location:../pages/categoria.php?sts=1");
+    } else
+        echo header("location:../pages/categoria.php?sts=2");
+}
+function alterar(){
+    $id = $_GET['id'];
+    $email = htmlspecialchars(trim($_POST['email']));
+    $nome = htmlspecialchars(trim($_POST['nome']));
+    $fonecel = htmlspecialchars(trim($_POST['fone']));
+    $fonecom = htmlspecialchars(trim($_POST['fonecom']));
+    $cpf = htmlspecialchars(trim($_POST['cpf']));
+    $cnpj = htmlspecialchars(trim($_POST['cnpj']));
+    $fantasia = htmlspecialchars(trim($_POST['fantasia']));
+    $senha = htmlspecialchars(trim(md5($_POST['senha'])));
+    $cep = htmlspecialchars(trim($_POST['cep']));
+    $endereco = htmlspecialchars(trim($_POST['rua']));
+    $numero = htmlspecialchars(trim($_POST['numero']));
+    $comp = htmlspecialchars(trim($_POST['complemento']));
+    //$estado = htmlspecialchars(trim($_POST['estado']));
+    //$cidade = htmlspecialchars(trim($_POST['cidade']));
+    
+                    
+                    $dadosEditado = mysql_query("UPDATE usuario SET 
+                                                        usu_email =  '$email',
+                                                        usu_foneCel='$fonecel',
+                                                        usu_foneCom = '$fonecom',
+                                                        usu_senha = '$senha'
+                                                  WHERE 
+                                                        usu_id = '$id'")or die(mysql_error());
+
+                    $dadosEditadoJur = mysql_query("UPDATE pessoa_jur SET 
+                                                        pessoaJur_cnpj =  '$cnpj',
+                                                        pessoa_jur_nomeFantasia='$fantasia'
+                                                  WHERE 
+                                                        usuario_usu_id = '$id'")or die(mysql_error());
+
+                    $dadosEditadoFis = mysql_query("UPDATE pessoa_fisica SET 
+                                                        pessoaFisica_cpf =  '$cpf',
+                                                        pessoaFisica_nome='$nome'
+                                                  WHERE 
+                                                        usuario_usu_id = '$id'")or die(mysql_error());
+
+                    $dadosEditadoEnd = mysql_query("UPDATE endereco SET 
+                                                        endereco_rua =  '$rua',
+                                                        endereco_cep='$cep',
+                                                        endereco_numero = '$numero',
+                                                        endereco_comp = '$comp'
+                                                  WHERE 
+                                                        usuario_usu_id = '$id'")or die(mysql_error());
+                    
+
+                    if(!mysql_error()){
+                          
+                          header("Location:../pages/usuario.php?error=0");
+                          
+                        }else{
+                          
+                          header("Location:../pages/usuario.php?error=1");
+                            
+                        }
+                        
+
+
+                }
+
+>>>>>>> origin/master
 
 }
 function adicionarAnuncio(){
