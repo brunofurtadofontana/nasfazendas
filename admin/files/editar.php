@@ -99,7 +99,9 @@ $usu_id_end = $dadosEndereco['usuario_usu_id'];
 
         </script>
     </head>
-<body>
+
+    <body>
+
 
 <?php
 if ($idPessoaF == $usu_id) {
@@ -145,8 +147,9 @@ if ($idPessoaF == $usu_id) {
                                 <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
                             </div>
                         </form>
-}
-<?php if ($idPessoaJ == $usu_id) { ?>
+
+
+<?php }if ($idPessoaJ == $usu_id) { ?>
 
                         <form class="cadas" action="Funcoes.php?funcao=6&id=<?php echo $id ?> " method="post">
 

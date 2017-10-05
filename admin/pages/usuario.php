@@ -14,7 +14,7 @@
 <html lang="en">
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,11 +47,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-           
-                $('#mydiv').fadeOut(5000);
-            });
-        
-
+        $("button").click(function(){
+        $("#div1").fadeOut();
+        $("#div2").fadeOut("slow");
+        $("#div3").fadeOut(3000);
+    });
+});
     </script>
 
 </head>
@@ -271,14 +272,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                        <?php     
+                        <?php 
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
-                      echo"<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+                      echo"<div id='aviso' class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
                       break;
                     case 1:
-                      echo"<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
+                      echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></div>";
                     break;
          }
 
@@ -376,9 +377,11 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
                         $cpf = $show['pessoaFisica_cpf'];
                         $cnpj = $show['pessoaJur_cnpj'];
                         $priv = $show['privilegio'];
+                   
                 ?>
                 
                  <tr>
+                    
                     <th > <?php if($nomeJur == NULL)echo $nomeFisica; else echo $nomeJur; ?> </th>
                     <th > <?php echo $email; ?> </th>
                     <th > <?php if($cnpj == NULL)echo $cpf;else echo $cnpj;  ?> </th> 
@@ -431,5 +434,6 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    </body>
+</body>
+
 </html>
