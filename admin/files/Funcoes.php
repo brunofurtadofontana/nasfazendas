@@ -181,9 +181,9 @@ function alterar(){
     $cpf = htmlspecialchars(trim($_POST['cpf']));
     $cnpj = htmlspecialchars(trim($_POST['cnpj']));
     $fantasia = htmlspecialchars(trim($_POST['fantasia']));
-    $senha = htmlspecialchars(trim(md5($_POST['senha'])));
+    $senha = htmlspecialchars(trim(base64_encode($_POST['senha'])));
     $cep = htmlspecialchars(trim($_POST['cep']));
-    $endereco = htmlspecialchars(trim($_POST['rua']));
+    $rua = htmlspecialchars(trim($_POST['rua']));
     $numero = htmlspecialchars(trim($_POST['numero']));
     $comp = htmlspecialchars(trim($_POST['complemento']));
     //$estado = htmlspecialchars(trim($_POST['estado']));
