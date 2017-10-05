@@ -106,7 +106,7 @@ $erro = $_GET['erro'];
         <?php
         if($idPessoaF == $usu_id){
             ?>
-            <form class="cadas" action="files/Funcoes.php?funcao=1" method="post" id="pessoafisicaform" >
+            <form class="cadas" action="?a=ok" method="post" id="pessoafisicaform" >
 
             <div class="form-group">
              Nome:<input class="form-control" type="text" name="nome" required="required" value="<?php echo $nome; ?>" />
@@ -141,7 +141,7 @@ $erro = $_GET['erro'];
                 Senha:<input class="form-control" type="text" name="senha" placeholder="Senha" required="required" value="<?php echo $senha; ?> " />
             </div>
             <div class="form-group">
-                <input class="btn btn-success" type="submit" value="Salvar" action="$dadosEditado"  />
+                <input class="btn btn-success" type="submit" value="Salvar" name="atualiza"  />
                 <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
             </div>
         </form>
@@ -149,7 +149,7 @@ $erro = $_GET['erro'];
 
         <?php  }if($idPessoaJ == $usu_id ){ ?>
 
-           <form class="cadas" action="files/Funcoes.php?funcao=2" method="post">
+           <form class="cadas" action="?a=ok" method="post">
             
            
             <div class="form-group">
@@ -185,7 +185,7 @@ $erro = $_GET['erro'];
               Senha: <input class="form-control" type="text" name="senha" placeholder="Senha" required="required" value="<?php echo $senha; ?>" />
             </div>
             <div class="form-group">
-                <input class="btn btn-success" type="submit" value="Salvar" action="$dadosEditado" />
+                <input class="btn btn-success" type="submit" value="Salvar" />
                 <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
             </div>
         </form>
@@ -196,35 +196,34 @@ $erro = $_GET['erro'];
 
         <?php 
             
-                    
+            if( isset( $_GET['a'] ) && $_GET['a'] == 'ok') {  
+                
+                alterar();
+            }     
 
-                    $dadosEditado = mysql_query("UPDATE usuario
-                                              SET usu_email = '$email',
-                                                  usu_foneCel = '$fonecel',
-                                                  usu_foneCom = '$fonecom',
-                                                  usu_senha = '$senha'
-                                              WHERE usu_id = usu_id ='$usu_id' ")or die(mysql_error());
+            function alterar(){
+                    $dadosEditado = mysql_query("UPDATE usuario SET usu_email =  '$email',usu_foneCel='$fonecel',usu_foneCom = '$fonecom',usu_senha = '$senha' WHERE usu_id ")or die(mysql_error());
 
-            
+                
 
-                $res = mysql_query($dadosEditado);
+                    $res = mysql_query($dadosEditado);
 
-                if($res)
+                    if($res)
 
-                    {
+                        {
 
-                        echo "Seus dados foram atualizados com sucesso!";
+                            echo "Seus dados foram atualizados com sucesso!";
 
-                    }
+                        }
 
-                else
+                    else
 
-                    {
+                        {
 
-                        echo "Não foi possível atualizar seus dados : (";
+                            echo "Não foi possível atualizar seus dados : (";
 
-                    }
-
+                        }
+                }
             
 
     ?>            
