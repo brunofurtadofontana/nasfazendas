@@ -185,16 +185,14 @@ $erro = $_GET['erro'];
               Senha: <input class="form-control" type="text" name="senha" placeholder="Senha" required="required" value="<?php echo $senha; ?>" />
             </div>
             <div class="form-group">
-                <input class="btn btn-success" type="submit" value="Salvar" action="$dadosEditado" />
+                <input class="btn btn-success" type="submit" value="Salvar" />
                 <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
             </div>
         </form>
 
          <?php 
              }
-            ?>  
-
-        <?php 
+          
             
                     
 
