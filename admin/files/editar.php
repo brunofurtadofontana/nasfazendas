@@ -149,7 +149,7 @@ $erro = $_GET['erro'];
 
         <?php  }if($idPessoaJ == $usu_id ){ ?>
 
-           <form class="cadas" action="?a=ok" method="post">
+           <form class="cadas" action="?b=ok" method="post">
             
            
             <div class="form-group">
@@ -196,33 +196,35 @@ $erro = $_GET['erro'];
 
         <?php 
             
+
             if( isset( $_GET['a'] ) && $_GET['a'] == 'ok') {  
                 
                 alterar();
-            }     
+            }  
+            elseif ( isset( $_GET['b'] ) && $_GET['b'] == 'ok') {  
+                
+                alterar();
+            }    
 
             function alterar(){
-                    $dadosEditado = mysql_query("UPDATE usuario SET usu_email =  '$email',usu_foneCel='$fonecel',usu_foneCom = '$fonecom',usu_senha = '$senha' WHERE usu_id ")or die(mysql_error());
 
-                
+                    
+                    $dadosEditado = mysql_query("UPDATE usuario SET 
+                                                        usu_email =  '$email',
+                                                        usu_foneCel='$fonecel',
+                                                        usu_foneCom = '$fonecom',
+                                                        usu_senha = '$senha'
+                                                  WHERE 
+                                                        usu_id = '$usu_id'")or die(mysql_error());
+                    
 
-                    $res = mysql_query($dadosEditado);
-
-                    if($res)
-
-                        {
-
-                            echo "Seus dados foram atualizados com sucesso!";
-
+                    if(mysql_affected_rows() > 0){
+                          echo "Sucesso: Atualizado corretamente!";
+                        }else{
+                          echo "Aviso: Não foi atualizado!";
                         }
-
-                    else
-
-                        {
-
-                            echo "Não foi possível atualizar seus dados : (";
-
-                        }
+                        
+                        header("Location:../pages/usuario.php");    
                 }
             
 
