@@ -271,16 +271,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                        <?php 
-                    $erro = $_GET['error'];
-                    switch ($erro) {
-                    case 0:
-                      
-                      echo"<div id='aviso' class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
-                        function fadeout(){
-                            
-                        }
-                    error_reporting(0);    
+                        <?php     
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
@@ -385,7 +376,6 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
                         $cpf = $show['pessoaFisica_cpf'];
                         $cnpj = $show['pessoaJur_cnpj'];
                         $priv = $show['privilegio'];
-                   
                 ?>
                 
                  <tr>

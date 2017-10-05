@@ -37,7 +37,7 @@ function cadastraUsuarioCpf() {
     $pessoaFisica_cpf = htmlspecialchars(trim($_POST['cpf']));
     //$pessoaJur_cnpj = htmlspecialchars(trim($_POST['cnpj']));
     //$pessoa_jur_nomeFantasia = htmlspecialchars(trim($_POST['fantasia']));
-    $usu_senha = htmlspecialchars(trim(md5($_POST['senha'])));
+    $usu_senha = htmlspecialchars(trim(base64_encode($_POST['senha'])));
     $usu_cep = htmlspecialchars(trim($_POST['cep']));
     $usu_endereco = htmlspecialchars(trim($_POST['rua']));
     $usu_numero = htmlspecialchars(trim($_POST['numero']));
@@ -98,7 +98,7 @@ function cadastraUsuarioCnpj() {
     //$pessoaFisica_cpf = htmlspecialchars(trim($_POST['cpf']));
     $pessoaJur_cnpj = htmlspecialchars(trim($_POST['cnpj']));
     $pessoaJur_nomeFantasia = htmlspecialchars(trim($_POST['fantasia']));
-    $usu_senha = htmlspecialchars(trim(md5($_POST['senha'])));
+    $usu_senha = htmlspecialchars(trim(base64_encode($_POST['senha'])));
     $usu_cep = htmlspecialchars(trim($_POST['cep']));
     $usu_endereco = htmlspecialchars(trim($_POST['rua']));
     $usu_numero = htmlspecialchars(trim($_POST['numero']));
@@ -238,11 +238,6 @@ function alterar(){
                           header("Location:../pages/usuario.php?error=1");
                             
                         }
-                        
-
-
-                }
-
 }
 function adicionarAnuncio(){
 	if(isset($_FILES['files'])){
