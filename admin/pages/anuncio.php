@@ -274,7 +274,7 @@
                         </button>
                    </center>
 
-                 <form action="Funcoes.php?funcoe=5" method="post">
+                 <form action="../files/Funcoes.php?funcao=5" method="post" enctype="multipart/form-data">
                             <label>Título do anúncio</label>
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
@@ -298,6 +298,7 @@
                             <select name="cidade" class="form-control">
                                 <option>Escolha uma cidade</option>
                             </select>
+                            <input type="submit" name="Enviar" class="btn btn-success">
                         </form>
                 </div><!-- /#col-lg12 -->
             </div> <!-- /#row -->

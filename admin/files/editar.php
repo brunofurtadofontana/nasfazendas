@@ -102,6 +102,136 @@ $usu_id_end = $dadosEndereco['usuario_usu_id'];
 
     <body>
 
+        
+        <?php
+        if($idPessoaF == $usu_id){
+            ?>
+            <form class="cadas" action="files/Funcoes.php?funcao=1" method="post" id="pessoafisicaform" >
+
+            <div class="form-group">
+             Nome:<input class="form-control" type="text" name="nome" required="required" value="<?php echo $nome; ?>" />
+            </div>
+            <div class="form-group">
+                E-mail: <input class="form-control" type="email" name="email" placeholder="Email" required="required" value="<?php echo $email ?>" />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    Tel. Celular: <input class="form-control" type="text" name="fone" placeholder="Telefone" required="required" value="<?php echo $fonecel; ?>"/>
+                </div>
+                <div class="col-6">
+                   Tel. Comercial: <input class="form-control" type="text" name="fonecom" placeholder="Telefone Comercial" required="required" value="<?php echo $fonecom; ?>" />
+                </div>
+                <div class="col-4">
+                    CEP:<input class="form-control" type="text" name="cep" placeholder="CEP" required="required" value="<?php echo $cep; ?>"/>
+                </div>
+                <div class="col-8">
+                   Rua: <input class="form-control" type="text" name="rua" placeholder="Rua, Av..." required="required" value="<?php echo $rua; ?>" />
+                </div>
+                <div class="col-6">
+                    Numero:<input class="form-control" type="text" name="numero" placeholder="Número" required="required" value="<?php echo $numero; ?>"/>
+                </div>
+                <div class="col-6">
+                    Complemento:<input class="form-control" type="text" name="complemento" placeholder="Complemento, Apt, casa..." required="required" value="<?php echo $comp; ?>" />
+                </div>
+            </div>
+            <div class="form-group">
+                CPF: <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required"  value="<?php echo $cpf; ?>" />
+            </div>
+            <div class="form-group">
+                Senha:<input class="form-control" type="text" name="senha" placeholder="Senha" required="required" value="<?php echo $senha; ?> " />
+            </div>
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Salvar" action="$dadosEditado"  />
+                <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
+            </div>
+        </form>
+
+
+        <?php  }if($idPessoaJ == $usu_id ){ ?>
+
+           <form class="cadas" action="files/Funcoes.php?funcao=2" method="post">
+            
+           
+            <div class="form-group">
+              E-mail:<input class="form-control" type="email" name="email" placeholder="Email" required="required" value="<?php echo $email; ?>" />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                  Tel. Celular:<input class="form-control" type="text" name="fone" placeholder="Telefone" required="required" value="<?php echo $fonecel; ?>"/>
+                </div>
+                <div class="col-6">
+                  Tel. Comercial:<input class="form-control" type="text" name="fonecom" placeholder="Telefone Comercial" required="required" value="<?php echo $fonecom; ?>" />
+                </div>
+                <div class="col-4">
+                  CEP:<input class="form-control" type="text" name="cep" placeholder="CEP" required="required" value="<?php echo $cep; ?>" />
+                </div>
+                <div class="col-8">
+                  Rua:<input class="form-control" type="text" name="rua" placeholder="Rua, Av..." required="required" value="<?php echo $rua; ?>" />
+                </div>
+                <div class="col-6">
+                  Numero:<input class="form-control" type="text" name="numero" placeholder="Número" required="required" value="<?php echo $numero; ?>" />
+                </div>
+                <div class="col-6">
+                  Complemento:<input class="form-control" type="text" name="complemento" placeholder="Complemento, Apt, casa..." required="required" value="<?php echo $comp; ?>" />
+                </div>
+            </div>
+            <div class="form-group">
+              CNPJ:<input class="form-control" type="text" title="Digite o CNPJ no formato 00.000.000/0000.00" name="cnpj" id="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" placeholder="CNPJ" required="required" value="<?php echo $cnpj; ?>" />
+            </div>
+            <div class="form-group">
+              Nome Fantasia:<input class="form-control" type="text" name="fantasia" id="fantasia" required="required" value="<?php echo $fantasia; ?>" />
+            </div>
+            <div class="form-group">
+              Senha: <input class="form-control" type="text" name="senha" placeholder="Senha" required="required" value="<?php echo $senha; ?>" />
+            </div>
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Salvar" />
+                <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
+            </div>
+        </form>
+
+         <?php 
+             }
+          
+            
+                    
+
+                    $dadosEditado = mysql_query("UPDATE usuario
+                                              SET usu_email = '$email',
+                                                  usu_foneCel = '$fonecel',
+                                                  usu_foneCom = '$fonecom',
+                                                  usu_senha = '$senha'
+                                              WHERE usu_id = usu_id ='$usu_id' ")or die(mysql_error());
+
+            
+
+                $res = mysql_query($dadosEditado);
+
+                if($res)
+
+                    {
+
+                        echo "Seus dados foram atualizados com sucesso!";
+
+                    }
+
+                else
+
+                    {
+
+                        echo "Não foi possível atualizar seus dados : (";
+
+                    }
+
+            
+
+    ?>            
+        </div>
+    </div>
+</div>
+        
+
+</body>
 
 <?php
 if ($idPessoaF == $usu_id) {

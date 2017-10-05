@@ -14,7 +14,7 @@
 <html lang="en">
 
 <head>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,8 +44,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<<<<<<< HEAD
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     
+=======
+    <script type="text/javascript">
+        $(document).ready(function(){
+           
+                $('#mydiv').fadeOut(5000);
+            });
+        
+
+    </script>
+>>>>>>> 46a6433e325500b4e97c74f2d8471db0b48f5e40
 
 </head>
 
@@ -265,14 +276,26 @@
             <div class="row">
                 <div class="col-lg-12">
                         <?php 
+<<<<<<< HEAD
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
                       
                       echo"<div id='aviso' class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+=======
+
+                        function fadeout(){
+                            
+                        }
+                    error_reporting(0);    
+                    $erro = $_GET['error'];
+                    switch ($erro) {
+                    case 0:
+                      echo"<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+>>>>>>> 46a6433e325500b4e97c74f2d8471db0b48f5e40
                       break;
                     case 1:
-                      echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></div>";
+                      echo"<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
                     break;
          }
 
