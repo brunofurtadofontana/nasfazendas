@@ -18,14 +18,10 @@ switch ($funcao) {
         adicionarSubCat();
         break;
     case 5:
-<<<<<<< HEAD
         adicionarAnuncio();
-=======
-        
         break;
     case 6:
         alterar();
->>>>>>> origin/master
         break;
     default:
         # code...
@@ -165,7 +161,6 @@ function adicionarCategoria() {
         echo header("location:../pages/categoria.php?sts=2");
 }
 
-<<<<<<< HEAD
 function adicionarSubCat(){
 	$id=$_GET['id'];
 	$sub = htmlspecialchars(trim($_POST['subcategoria']));
@@ -176,7 +171,6 @@ function adicionarSubCat(){
 		echo header("location:../pages/categoria.php?sts=1");
 	}
 	else echo header("location:../pages/categoria.php?sts=2");
-=======
 function adicionarSubCat() {
     $id = $_GET['id'];
     $sub = htmlspecialchars(trim($_POST['subcategoria']));
@@ -248,8 +242,6 @@ function alterar(){
 
 
                 }
-
->>>>>>> origin/master
 
 }
 function adicionarAnuncio(){

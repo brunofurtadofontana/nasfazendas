@@ -44,10 +44,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<<<<<<< HEAD
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    
-=======
     <script type="text/javascript">
         $(document).ready(function(){
            
@@ -56,7 +53,6 @@
         
 
     </script>
->>>>>>> 46a6433e325500b4e97c74f2d8471db0b48f5e40
 
 </head>
 
@@ -276,14 +272,11 @@
             <div class="row">
                 <div class="col-lg-12">
                         <?php 
-<<<<<<< HEAD
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
                       
                       echo"<div id='aviso' class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
-=======
-
                         function fadeout(){
                             
                         }
@@ -292,7 +285,6 @@
                     switch ($erro) {
                     case 0:
                       echo"<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
->>>>>>> 46a6433e325500b4e97c74f2d8471db0b48f5e40
                       break;
                     case 1:
                       echo"<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
@@ -397,7 +389,6 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
                 ?>
                 
                  <tr>
-                    
                     <th > <?php if($nomeJur == NULL)echo $nomeFisica; else echo $nomeJur; ?> </th>
                     <th > <?php echo $email; ?> </th>
                     <th > <?php if($cnpj == NULL)echo $cpf;else echo $cnpj;  ?> </th> 
@@ -450,6 +441,5 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-</body>
-
+    </body>
 </html>
