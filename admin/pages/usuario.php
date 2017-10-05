@@ -46,14 +46,13 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-        $("button").click(function(){
-        $("#div1").fadeOut();
-        $("#div2").fadeOut("slow");
-        $("#div3").fadeOut(3000);
-    });
-});
-    </script>
+         $(document).ready(function(){
+           
+                 $('#mydiv').fadeOut(5000);
+            });
+        
+ 
+   </script>
 
 </head>
 
@@ -276,10 +275,10 @@
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
-                      echo"<div id='aviso' class='alert alert-success' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+                      echo "<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
                       break;
                     case 1:
-                      echo"<div class='alert alert-danger' role='alert'><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></div>";
+                      echo "<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
                     break;
          }
 
