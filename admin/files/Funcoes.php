@@ -187,7 +187,7 @@ function adicionarAnuncio(){
         $titulo = $_POST['titulo'];
         $descricao = $_POST['descricao'];
         $data = date("dd/mm/aa");
-        if($file_size > 2097152){
+        if($file_size > 5097152){
 			$errors[]='File size must be less than 2 MB';
         }		
         $desired_dir="user_data";
@@ -201,8 +201,8 @@ function adicionarAnuncio(){
                 $new_dir="user_data/".$file_name.time();
                  rename($file_tmp,$new_dir) ;				
             }
-             mysql_query("INSERT INTO fotos(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
-                                VALUES('$titulo','$file_name','$file_size','$file_type','$descricao','$data')")or die(mysql_error());			
+            // mysql_query("INSERT INTO fotos(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
+              //                  VALUES('$titulo','$file_name','$file_size','$file_type','$descricao','$data')")or die(mysql_error());			
         }else{
                 print_r($errors);
         }
