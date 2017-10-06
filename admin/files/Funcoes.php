@@ -18,7 +18,7 @@ switch ($funcao) {
         adicionarSubCat();
         break;
     case 5:
-        
+        adicionarAnuncio();       
         break;
     case 6:
         alterar();
@@ -49,11 +49,13 @@ function cadastraUsuarioCpf() {
 										usu_email,
 										usu_foneCel,
 										usu_foneCom,
+										privilegio,
 										usu_senha)
 										VALUES(
 										'$usu_email',
 										'$usu_foneCel',
 										'$usu_foneCom',
+										'anunciante',
 										'$usu_senha')")or die(mysql_error());
 
     $res = mysql_query("SELECT max(usu_id)as maior from usuario")or die(mysql_error());
@@ -140,7 +142,7 @@ function cadastraUsuarioCnpj() {
 														'$usu_endereco',
 														'$usu_cep',
 														'$usu_numero',
-														'usu_complemento',
+														'$usu_complemento',
 														'$idUsuario')")or die(mysql_error());
 
     if (!mysql_error()) {
@@ -160,6 +162,8 @@ function adicionarCategoria() {
     } else
         echo header("location:../pages/categoria.php?sts=2");
 }
+
+
 
 function adicionarSubCat() {
     $id = $_GET['id'];
@@ -181,9 +185,9 @@ function alterar(){
     $cpf = htmlspecialchars(trim($_POST['cpf']));
     $cnpj = htmlspecialchars(trim($_POST['cnpj']));
     $fantasia = htmlspecialchars(trim($_POST['fantasia']));
-    $senha = htmlspecialchars(trim(base64_encode($_POST['senha'])));
+    $senha = htmlspecialchars(trim(md5($_POST['senha'])));
     $cep = htmlspecialchars(trim($_POST['cep']));
-    $rua = htmlspecialchars(trim($_POST['rua']));
+    $endereco = htmlspecialchars(trim($_POST['rua']));
     $numero = htmlspecialchars(trim($_POST['numero']));
     $comp = htmlspecialchars(trim($_POST['complemento']));
     //$estado = htmlspecialchars(trim($_POST['estado']));
@@ -231,7 +235,49 @@ function alterar(){
                         
 
 
-                }
+                
 
 
+
+}
+function adicionarAnuncio(){
+	if(isset($_FILES['files'])){
+    $errors= array();
+	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+		$file_name = md5(rand(1,999)).$_FILES['files']['name'][$key];
+		$file_size =$_FILES['files']['size'][$key];
+		$file_tmp =$_FILES['files']['tmp_name'][$key];
+		$file_type=$_FILES['files']['type'][$key];	
+        $titulo = $_POST['titulo'];
+        $descricao = $_POST['descricao'];
+        $data = date("dd/mm/aa");
+        if($file_size > 5097152){
+			$errors[]='File size must be less than 2 MB';
+        }		
+        $desired_dir="user_data";
+        if(empty($errors)==true){
+            if(is_dir($desired_dir)==false){
+                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
+            }
+            if(is_dir("$desired_dir/".$file_name)==false){
+                move_uploaded_file($file_tmp,"user_data/".$file_name);
+            }else{									//rename the file if another one exist
+                $new_dir="user_data/".$file_name.time();
+                 rename($file_tmp,$new_dir) ;				
+            }
+            // mysql_query("INSERT INTO fotos(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
+              //                  VALUES('$titulo','$file_name','$file_size','$file_type','$descricao','$data')")or die(mysql_error());			
+        }else{
+                print_r($errors);
+        }
+        
+    }
+	if(empty($error)){
+		echo "Success";
+       
+        header("Location:temp.php");
+	}
+}
+}
+	
 ?>
