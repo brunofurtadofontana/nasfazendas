@@ -6,6 +6,7 @@
     $res = mysql_query("SELECT *from usuario as u JOIN pessoa_fisica as pf WHERE usu_email = '$email' AND u.usu_id = pf.usuario_usu_id " );
     $show = mysql_fetch_assoc($res);
     $nomePF = $show['pessoaFisica_nome'];
+    $email = $show['usu_email'];
    // $nomeJUR = $show['pessoa_jur_nomeFantasia'];
     
 
@@ -47,7 +48,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
          $(document).ready(function(){
-           
                  $('#mydiv').fadeOut(5000);
             });
         
@@ -272,15 +272,17 @@
             <div class="row">
                 <div class="col-lg-12">
                         <?php 
+                    error_reporting(0);
                     $erro = $_GET['error'];
-                    switch ($erro) {
-                    case 0:
-                      echo "<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
-                      break;
-                    case 1:
-                      echo "<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
-                    break;
-         }
+                   if(isset($erro) && $erro == 0) {
+                   
+                      echo "<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+                    }
+                    if(isset($erro) && $erro == 1){
+                    
+                      echo "<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
+                    }
+         
 
 
         ?>
@@ -293,7 +295,7 @@
                 <div class="col-lg-12">
                 <form action="" method="post">
                     <label>Buscar</label>
-                    <input type="text" class="form-control" name="buscar" placeholder="Digite um nome/cpf..." required="required">
+                    <input type="text" class="form-control" name="buscar" placeholder="Digite um nome/cpf..." required="required"><br>
                     <button type="submit" value="buscar" class="btn btn-success">Buscar</button>
                 </form>
                 <?php
@@ -335,15 +337,13 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
                         <a href="../files/editar.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
-                        <a href="../files/excluir.php?id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
+                        <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" title="Excluir">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
-                        <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
+                        <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" data-target=".bd-info-modal-lg" title="Mais Informações">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </a>
-                        <a href="home.php?go=email&id=<?php echo $id; ?>" data-toggle="modal" title="Enviar Email">
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        </a>
+                       
                     </th>
                 </tr>
                 <?php } ?>
@@ -395,9 +395,7 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
                         <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </a>
-                        <a href="home.php?go=email&id=<?php echo $id; ?>" data-toggle="modal" title="Enviar Email">
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        </a>
+                        
                     </th>
                 </tr>
             <?php endwhile; ?>
@@ -414,7 +412,67 @@ $res = mysql_query("SELECT *FROM usuario as u JOIN pessoa_fisica as pf JOIN pess
             ?>
                 </div><!-- /#col-lg3 -->
             </div> <!-- /#row -->
-   
+
+    <!-- [[ MODAL EXCLUIR ]] -->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+         <div class="modal-header">
+          <h2 class="modal-title">Deletar Usuário</h2>
+          </div>
+            <p style="font-size:16px;">Tem certeza que deseja deletar o usuário <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $email ?></span> ? </p>
+            <a href="../files/excluir.php?id=<?php echo $id; ?>" ><button class="btn btn-success">Deletar</button></a>
+            <a href="" ><button class="btn btn-danger">Cancelar</button></a>
+           
+        </div>
+      </div>
+    </div><!-- FIM MODAL EXCLUIR -->
+
+    <!-- [[ MODAL INFORMAÇÕES ]] -->
+
+    <div class="modal fade bd-info-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+         <div class="modal-header">
+          <h2 class="modal-title">Informações</h2>
+          </div>
+            <?php
+             $resInfo = mysql_query("SELECT * FROM usuario left join pessoa_fisica on usuario.usu_id = pessoa_fisica.usuario_usu_id left join pessoa_jur on usuario.usu_id = pessoa_jur.usuario_usu_id left join endereco on usuario.usu_id = endereco.usuario_usu_id WHERE usuario.usu_id = '$id'")or die(mysql_error()); 
+            $show=mysql_fetch_assoc($resInfo);
+                        //$id = $show['usu_id'];
+                        $nomeFisica = $show['pessoaFisica_nome'];
+                        $nomeJur = $show['pessoa_jur_nomeFantasia'];
+                        $email= $show['usu_email'];
+                        $cpf = $show['pessoaFisica_cpf'];
+                        $cnpj = $show['pessoaJur_cnpj'];
+                        $priv = $show['privilegio'];
+                        $fone = $show['usu_foneCel'];
+                        $foneCom = $show['usu_foneCom'];
+                        $rua = $show['endereco_rua'];
+                        $cep = $show['endereco_cep'];
+                        $num = $show['endereco_numero'];
+                        $compl = $show['endereco_comp'];
+             ?>
+             <h3>Dados pessoais</h3>
+             <hr>
+             <h4>Nome: <b><?php echo $nomeFisica; ?></b></h4>
+             <h4>Email: <b><?php echo $email; ?></b></h4>
+             <h4>CPF/CNPJ: <b><?php echo $cpf; ?></b></h4>
+             <h4>Celular: <b><?php echo $fone; ?></b></h4>
+             <hr>
+             <h3>Endereço</h3>
+             <hr>
+             <h4>Rua: <b><?php echo $rua; ?></b></h4>
+             <h4>Número: <b><?php echo $num; ?></b></h4>
+             <h4>CEP: <b><?php echo $cep; ?></b></h4>
+             <h4>Complemento: <b><?php echo $compl; ?></b></h4>
+             
+            <a href="" ><button class="btn btn-danger">Fechar</button></a>
+           
+        </div>
+      </div>
+    </div><!-- FIM MODAL EXCLUIR -->
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
