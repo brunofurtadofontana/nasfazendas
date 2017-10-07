@@ -144,7 +144,7 @@ if ($idPessoaF == $usu_id) {
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-success" type="submit" value="Salvar" name="atualiza"  />
-                                <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
+                                <a  href="../pages/usuario.php?error=0"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
                             </div>
                         </form>
 
@@ -188,7 +188,7 @@ if ($idPessoaF == $usu_id) {
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-success" type="submit" name="Salvar" value="Salvar" />
-                                <a  href="../pages/usuario.php"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
+                                <a  href="Funcoes.php?funcao=6&id=<?php echo $id ?>"><input class="btn btn-danger" type="submit" value="Cancelar"/></a>
                             </div>
                         </form>
 

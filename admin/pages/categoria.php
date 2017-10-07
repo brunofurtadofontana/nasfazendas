@@ -271,7 +271,7 @@
                     <form action="../files/Funcoes.php?funcao=3" method="post">
                         <input type="text" class="form-control" name="nome" placeholder="Nome da Categoria" required="required"/>
                         <br>
-                        <button type="submit" class="btn btn-primary" >Enviar</button>
+                        <button type="submit" class="btn btn-success"  >Cadastrar</button>
                     </form>
                 <h2>Adicionar Subcategoria</h2>
                 <form action="../files/Funcoes.php?funcao=4" method="post">
@@ -288,16 +288,16 @@
                     endwhile;
                 ?>
                 </select>
+                <br/>
                 <input type="text" class="form-control" name="nome" placeholder="Nome da SubCategoria" required="required"/>
-                <br>
-                <button type="submit" class="btn btn-primary" >Enviar</button>
+                <br/>
+                <button type="submit" class="btn btn-success" >Cadastrar</button>
                 <h2>Categorias Cadastradas</h2>
                 <table class="table table-bordered" style="font-size:14px;margin-top:20px;">
                             <tr>
                                 <th style="text-align:center;">#id</th>
                                 <th style="text-align:center;">Categoria</th>
                                 <th style="text-align:center;">Subcategoria</th>
-                                <th style="text-align:center;">Ação</th>
                             </tr>
                             <?php 
                             
@@ -313,32 +313,146 @@
                             ?>
                             <tr>
                                 <th > <?php echo $id; ?> </th>
-                                <th > <?php echo $nome; ?> </th>
-                                <th > <ul> 
-                                <?php 
-                                        $subCat = mysql_query("SELECT *FROM categoria WHERE id_pai !='0' AND id_pai = '$id'")or die(mysql_error());
-                                        while($totalSubCat = mysql_fetch_assoc($subCat)):
-                                            $nomeSub = $totalSubCat['categoria_nome'];
-                                            echo "<li>".$nomeSub."</li>";
-                                        endwhile;
-                                ?> 
-                                     </ul>
-                                </th>
-                                <th style="text-align:center;">
-                                    <a href="home.php?go=editCat&id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
+                                <th > 
+                                    <?php echo $nome; ?> 
+                                    <a href="home.php?go=editCat&id=<?php echo $id; ?>" data-toggle="modal" data-target="#myModalCat" title="Editar">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="home.php?go=delCat&id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
+                                    <a href="home.php?go=delCat&id=<?php echo $id; ?>" data-toggle="modal" data-target="#myModalExcluiCat" title="Excluir">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
+
+                                </th>
+                                <th > <ul> 
+
+                                         
+                                <?php 
+                                        $subCat = mysql_query("SELECT *FROM categoria WHERE id_pai !='0'")or die(mysql_error());
+                                        while($totalSubCat = mysql_fetch_assoc($subCat)):
+                                            $nomeSub = $totalSubCat['categoria_nome'];
+                                            $idSubCat = $totalSubCat['categoria_id'];
+                                            ?>
+                                        <a href="home.php?go=editCat&id=<?php echo $idSubCat; ?>" data-toggle="modal" data-target="#myModalSubCat" title="Editar">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </a>
+                                        <a href="home.php?go=delCat&id=<?php echo $idSubCat ; ?>" data-toggle="modal" data-target="#myModalExcluiSubCat<?php echo $idSubCat; ?>" title="Excluir">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </a>
+                                <?php
+                                            echo "<li>".$nomeSub."</li>"; ?>
+
+                        <div id="myModalExcluiSubCat<?php if($idSubCat==$idSubCat)echo $idSubCat;?>"  class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+                             <div class="modal-header">
+                              <h2 class="modal-title">Deletar Categoria</h2>
+                              <?php echo $idSubCat ?>   
+                              </div>
+                                <p style="font-size:16px;">Tem certeza que deseja deletar a Sub-Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $nomeSub ?></span> ? </p>
+                                <a href="../files/Funcoes.php?funcao=8&id=<?php echo $idSubCat; ?>" ><button class="btn btn-success">Deletar</button></a>
+                                <a href="" ><button class="btn btn-danger">Cancelar</button></a>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                                 <?php           
+                                        endwhile;
+                                ?> 
+                                    
+                                
+
+                                     </ul>
+
                                 </th>
                             </tr>
                             <?php } ?>
                         </table>
                 </div><!-- /#col-lg3 -->
             </div> <!-- /#row -->
-   
+                                
+                                <!-- Trigger the modal with a button -->
+                        <!-- Modal -->
+                        
+            <?php 
+                    include("../files/conexao.php");
+                    $sqlCat = mysql_query("SELECT *FROM categoria WHERE id_pai ='0'")or die(mysql_error());
+                    $categoria = mysql_fetch_assoc($sqlCat);
+                    $id=$categoria['categoria_id'];
+                    $cat=$categoria['categoria_nome'];
+                    $idPai = $categoria['id_pai'];
+             ?>
 
+
+                    <div id="myModalCat" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Editar Categoria</h4>
+                              </div>
+                              <div class="modal-body">
+                                      <label>Categoria:</label>
+                                      <input type="text" class="form-control" value="<?php echo "$cat" ?>">
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
+                              </div>
+                              
+                            </div>
+
+                    <div id="myModalSubCat" class="modal-content" >
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Editar Sub-Categoria</h4>
+                              </div>
+                              <div class="modal-body">
+                                     
+                              </div>
+                              <?php 
+                                        $subCat = mysql_query("SELECT *FROM categoria WHERE id_pai !='0' AND id_pai = '$id'")or die(mysql_error());
+                                        while($totalSubCat = mysql_fetch_assoc($subCat)):
+                                            $nomeSub = $totalSubCat['categoria_nome'];
+                                            
+                                        endwhile;
+                                ?> 
+                              <div class="modal-body">
+                                      <label>Sub-Categoria:</label>
+                                      <input type="text" class="form-control" value="<?php echo "$nomeSub" ?>">
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Salvar</button>
+                              </div>
+                              
+                            </div>
+
+
+                          </div>
+                        </div>
+
+                    <div id="myModalExcluiCat"  class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+                             <div class="modal-header">
+                              <h2 class="modal-title">Deletar Categoria</h2>
+                              </div>
+                                <p style="font-size:16px;">Tem certeza que deseja deletar a Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $cat ?></span> ? </p>
+                                <a href="../files/Funcoes.php?funcao=7&id=<?php echo $id; ?>" ><button class="btn btn-success">Deletar</button></a>
+                                <a href="" ><button class="btn btn-danger">Cancelar</button></a>
+                            </div>
+                          </div>
+                        </div>
+
+                   
+            
+
+            
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
