@@ -293,10 +293,29 @@
                             <label>Estado</label>
                             <select name="estado" class="form-control">
                                 <option>Escolha um estado</option>
+                                <?php 
+                                    $res = mysql_query("SELECT * from tb_estados")or die(mysql_error());
+                                    while ($mostrar=mysql_fetch_assoc($res)) { 
+                                        $cidade= $mostrar['nome'];
+                                    ?>
+                                        <option value="<?php echo $cidade?>"><?php echo $cidade; ?></option>
+                                  <?php      
+                                    }
+                                ?>
                             </select>
                             <label>cidade</label>
                             <select name="cidade" class="form-control">
                                 <option>Escolha uma cidade</option>
+
+                                <?php 
+                                    $res = mysql_query("SELECT * from tb_cidades")or die(mysql_error());
+                                    while ($mostrar=mysql_fetch_assoc($res)) { 
+                                        $cidade= $mostrar['nome'];
+                                    ?>
+                                        <option value="<?php echo $cidade?>"><?php echo $cidade; ?></option>
+                                  <?php      
+                                    }
+                                ?>
                             </select>
                             <input type="submit" name="Enviar" class="btn btn-success">
                         </form>
