@@ -23,6 +23,13 @@ switch ($funcao) {
     case 6:
         alterar();
         break;
+    case 7:
+        excluirCat();
+        break;
+    case 8:
+        excluirSubCat();
+        break;
+    
     default:
         # code...
         break;
@@ -232,10 +239,28 @@ function alterar(){
                           header("Location:../pages/usuario.php?error=1");
                             
                         }
-                        
+                }
+function excluirCat(){
 
+        $exclui_id = $_GET['id'];
 
-                
+        mysql_query("DELETE FROM categoria WHERE categoria_id = '$exclui_id'")or die(mysql_error());
+        
+        header("Location:../pages/categoria.php");
+
+}
+function excluirSubCat(){
+
+        $exclui_idSub = $_GET['id'];
+
+        $res = mysql_query("DELETE FROM categoria WHERE categoria_id = '$exlui_idSub' ")or die(mysql_error());
+        if($res){
+           mysql_error();
+        }
+        
+        header("Location:../pages/categoria.php");
+
+}
 
 
 
