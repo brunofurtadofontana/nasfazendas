@@ -278,7 +278,7 @@
                 <select name="subcategoria" class="form-control">
                     <option>Escolha uma categoria</option>
                 <?php
-                    $res = mysql_query("SELECT *from categoria WHERE id_pai = '0' ")or due(mysql_error());
+                    $res = mysql_query("SELECT * from categoria JOIN subcategoria WHERE subcat_id = categoria_categoria_id ")or due(mysql_error());
                     while($most = mysql_fetch_assoc($res)):
                         $id=$most['categoria_id'];
                         $cat=$most['categoria_nome'];
@@ -302,13 +302,13 @@
                             <?php 
                             
 
-                            $res = mysql_query("SELECT *FROM categoria WHERE id_pai ='0'")or die(mysql_error());
+                            $res = mysql_query("SELECT * FROM categoria WHERE categoria_id != '0'")or die(mysql_error());
                             
                             $total = mysql_num_rows($res);
                             while($resultado = mysql_fetch_assoc($res)){
                                 $id = $resultado['categoria_id'];
                                 $nome = $resultado['categoria_nome'];
-                                $idPai = $resultado['id_pai'];
+                                
                                 
                             ?>
                             <tr>
@@ -318,42 +318,56 @@
                                     <a href="home.php?go=editCat&id=<?php echo $id; ?>" data-toggle="modal" data-target="#myModalCat" title="Editar">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
-                                    <a href="home.php?go=delCat&id=<?php echo $id; ?>" data-toggle="modal" data-target="#myModalExcluiCat" title="Excluir">
+                                    <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" title="Excluir">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+                                         <div class="modal-header">
+                                                <h2 class="modal-title">Deletar Categoria</h2>
+                                            </div>
+                                            <p style="font-size:16px;">Tem certeza que deseja deletar a Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $cat ?></span> ? </p>
+                                            <a href="../files/Funcoes.php?funcao=7&id=<?php echo $id; ?>" ><button class="btn btn-success">Deletar</button></a>
+                                            <a href="" ><button class="btn btn-danger">Cancelar</button></a>
+                                        </div>
+                                      </div>
+                                    </div>
+
 
                                 </th>
                                 <th > <ul> 
 
                                          
                                 <?php 
-                                        $subCat = mysql_query("SELECT *FROM categoria WHERE id_pai !='0'")or die(mysql_error());
+                                        $subCat = mysql_query("SELECT * FROM categoria JOIN subcategoria WHERE categoria_id = categoria_categoria_id AND categoria_categoria_id = '$id'")or die(mysql_error());
                                         while($totalSubCat = mysql_fetch_assoc($subCat)):
-                                            $nomeSub = $totalSubCat['categoria_nome'];
-                                            $idSubCat = $totalSubCat['categoria_id'];
-                                            ?>
+                                            $nomeSub = $totalSubCat['subcat_nome'];
+                                            $idSubCat = $totalSubCat['subcat_id'];
+                                ?>
                                         <a href="home.php?go=editCat&id=<?php echo $idSubCat; ?>" data-toggle="modal" data-target="#myModalSubCat" title="Editar">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>
-                                        <a href="home.php?go=delCat&id=<?php echo $idSubCat ; ?>" data-toggle="modal" data-target="#myModalExcluiSubCat<?php echo $idSubCat; ?>" title="Excluir">
+                                        <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg<?php echo $idSubCat;?>" title="Excluir">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                         </a>
                                 <?php
-                                            echo "<li>".$nomeSub."</li>"; ?>
+                                            echo "<li>".$nomeSub."</li>"; 
+                                ?>
 
-                        <div id="myModalExcluiSubCat<?php if($idSubCat==$idSubCat)echo $idSubCat;?>"  class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
-                             <div class="modal-header">
-                              <h2 class="modal-title">Deletar Categoria</h2>
-                              <?php echo $idSubCat ?>   
-                              </div>
-                                <p style="font-size:16px;">Tem certeza que deseja deletar a Sub-Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $nomeSub ?></span> ? </p>
-                                <a href="../files/Funcoes.php?funcao=8&id=<?php echo $idSubCat; ?>" ><button class="btn btn-success">Deletar</button></a>
-                                <a href="" ><button class="btn btn-danger">Cancelar</button></a>
-                            </div>
-                          </div>
-                        </div>
+                                <div class="modal fade bd-example-modal-lg<?php if($idSubCat==$idSubCat)echo $idSubCat;?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg">
+                                            <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+                                             <div class="modal-header">
+                                              <h2 class="modal-title">Deletar Categoria</h2>
+                                              <?php echo $idSubCat ?>   
+                                              </div>
+                                                <p style="font-size:16px;">Tem certeza que deseja deletar a Sub-Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $nomeSub ?></span> ? </p>
+                                                <a href="../files/Funcoes.php?funcao=8&id=<?php echo $idSubCat; ?>" ><button class="btn btn-success">Deletar</button></a>
+                                                <a href="" ><button class="btn btn-danger">Cancelar</button></a>
+                                            </div>
+                                          </div>
+                                        </div>
 
 
 
@@ -378,11 +392,11 @@
                         
             <?php 
                     include("../files/conexao.php");
-                    $sqlCat = mysql_query("SELECT *FROM categoria WHERE id_pai ='0'")or die(mysql_error());
+                    $sqlCat = mysql_query("SELECT * FROM categoria JOIN subcategoria WHERE categoria_categoria_id ='0'")or die(mysql_error());
                     $categoria = mysql_fetch_assoc($sqlCat);
                     $id=$categoria['categoria_id'];
                     $cat=$categoria['categoria_nome'];
-                    $idPai = $categoria['id_pai'];
+                    
              ?>
 
 
