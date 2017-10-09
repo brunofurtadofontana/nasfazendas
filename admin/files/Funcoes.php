@@ -163,7 +163,7 @@ function adicionarCategoria() {
     $id = $_GET['id'];
     $nome = htmlspecialchars(trim($_POST['nome']));
     //$nome = "Atividade ".$nome;
-    $res = mysql_query("INSERT INTO categoria(categoria_nome,id_pai) VALUES( '$nome','0')")or die(mysql_error());
+    $res = mysql_query("INSERT INTO categoria(categoria_nome) VALUES( '$nome')")or die(mysql_error());
     if ($res) {
         echo header("location:../pages/categoria.php?sts=1");
     } else
@@ -177,7 +177,7 @@ function adicionarSubCat() {
     $sub = htmlspecialchars(trim($_POST['subcategoria']));
     $nome = htmlspecialchars(trim($_POST['nome']));
     //$nome = "Atividade ".$nome;
-    $res = mysql_query("INSERT INTO categoria(categoria_nome,id_pai) VALUES( '$nome','$sub')")or die(mysql_error());
+    $res = mysql_query("INSERT INTO subcategoria(subcat_nome, categoria_categoria_id) VALUES( '$nome','$sub')")or die(mysql_error());
     if ($res) {
         echo header("location:../pages/categoria.php?sts=1");
     } else
@@ -244,7 +244,7 @@ function excluirCat(){
 
         $exclui_id = $_GET['id'];
 
-        mysql_query("DELETE FROM categoria WHERE categoria_id = '$exclui_id'")or die(mysql_error());
+        mysql_query("DELETE FROM categoria WHERE  categoria_id = '$exclui_id'")or die(mysql_error());
         
         header("Location:../pages/categoria.php");
 
@@ -253,7 +253,7 @@ function excluirSubCat(){
 
         $exclui_idSub = $_GET['id'];
 
-        $res = mysql_query("DELETE FROM categoria WHERE categoria_id = '$exlui_idSub' ")or die(mysql_error());
+        $res = mysql_query("DELETE FROM subcategoria WHERE  subcat_id = '$exclui_id' ")or die(mysql_error());
         if($res){
            mysql_error();
         }
@@ -264,7 +264,8 @@ function excluirSubCat(){
 
 
 
-}
+
+
 function adicionarAnuncio(){
 	if(isset($_FILES['files'])){
     $errors= array();
@@ -275,10 +276,6 @@ function adicionarAnuncio(){
 		$file_type=$_FILES['files']['type'][$key];	
         $titulo = $_POST['titulo'];
         $descricao = $_POST['descricao'];
-        $valor = $_POST['valor'];
-        $categoria = $_POST['categoria'];
-        $estado = $_POST['estado'];
-        $cidade = $_POST['cidade'];
         $data = date("dd/mm/aa");
         if($file_size > 5097152){
 			$errors[]='File size must be less than 2 MB';
@@ -294,7 +291,7 @@ function adicionarAnuncio(){
                 $new_dir="user_data/".$file_name.time();
                  rename($file_tmp,$new_dir) ;				
             }
-             mysql_query("INSERT INTO anuncio(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
+            // mysql_query("INSERT INTO fotos(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
               //                  VALUES('$titulo','$file_name','$file_size','$file_type','$descricao','$data')")or die(mysql_error());			
         }else{
                 print_r($errors);
