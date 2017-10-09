@@ -264,7 +264,7 @@ function excluirSubCat(){
 
 
 
-}
+
 function adicionarAnuncio(){
 	if(isset($_FILES['files'])){
     $errors= array();
@@ -272,7 +272,8 @@ function adicionarAnuncio(){
 		$file_name = md5(rand(1,999)).$_FILES['files']['name'][$key];
 		$file_size =$_FILES['files']['size'][$key];
 		$file_tmp =$_FILES['files']['tmp_name'][$key];
-		$file_type=$_FILES['files']['type'][$key];	
+		$file_type=$_FILES['files']['type'][$key];
+		$idUser = $_POST['id'];	
         $titulo = $_POST['titulo'];
         $descricao = $_POST['descricao'];
         $valor = $_POST['valor'];
@@ -280,6 +281,7 @@ function adicionarAnuncio(){
         $estado = $_POST['estado'];
         $cidade = $_POST['cidade'];
         $data = date("dd/mm/aa");
+        $dataFinal = $data+10;
         if($file_size > 5097152){
 			$errors[]='File size must be less than 2 MB';
         }		
@@ -294,8 +296,24 @@ function adicionarAnuncio(){
                 $new_dir="user_data/".$file_name.time();
                  rename($file_tmp,$new_dir) ;				
             }
-             mysql_query("INSERT INTO anuncio(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
-              //                  VALUES('$titulo','$file_name','$file_size','$file_type','$descricao','$data')")or die(mysql_error());			
+             mysql_query("INSERT INTO anuncio(anuncio_titulo,
+             								  anuncio_descricao,
+             								  anuncio_valor,
+             								  anuncio_datainicial,
+             								  anuncio_datafinal,
+             								  anuncio_formPag) 
+                                  VALUES('$titulo',
+             							 '$descricao',
+             							 '$valor',
+             							 '$data',
+             							 '$dataFinal',
+             							 '$data')")or die(mysql_error());
+
+             mysql_query("INSERT into img_produto(img_nome,
+             									  img_dir)
+             									  VALUES('$file_name',
+             											  '$file_type')")or die(mysql_error());
+
         }else{
                 print_r($errors);
         }
