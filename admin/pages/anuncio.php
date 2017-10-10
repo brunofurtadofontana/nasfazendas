@@ -317,6 +317,7 @@
                                     }
                                 ?>
                             </select>
+                            <input type="hidden" name="id" value="<?php echo $id ?>"/>
                             <input type="submit" name="Enviar" class="btn btn-success">
                         </form>
                 </div><!-- /#col-lg12 -->
