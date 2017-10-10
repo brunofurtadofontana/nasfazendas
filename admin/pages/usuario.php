@@ -6,7 +6,6 @@
     $res = mysql_query("SELECT *from usuario as u JOIN pessoa_fisica as pf WHERE usu_email = '$email' AND u.usu_id = pf.usuario_usu_id " );
     $show = mysql_fetch_assoc($res);
     $nomePF = $show['pessoaFisica_nome'];
-    $email = $show['usu_email'];
    // $nomeJUR = $show['pessoa_jur_nomeFantasia'];
     
 
@@ -48,6 +47,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
          $(document).ready(function(){
+           
                  $('#mydiv').fadeOut(5000);
             });
         
@@ -70,7 +70,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:#fff;    ">Painel Admin NASFAZENDAS</a>
+                <a class="navbar-brand" href="index.html" style="color:#fff;">Painel Admin NASFAZENDAS</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -272,17 +272,15 @@
             <div class="row">
                 <div class="col-lg-12">
                         <?php 
-                    error_reporting(0);
                     $erro = $_GET['error'];
-                   if(isset($erro) && $erro == 0) {
-                   
-                      echo "<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
-                    }
-                    if(isset($erro) && $erro == 1){
-                    
-                      echo "<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
-                    }
-         
+                    switch ($erro) {
+                    case 0:
+                      echo "<div class='alert alert-success' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>Dados atualizados com sucesso!!!</center></div>";
+                      break;
+                    case 1:
+                      echo "<div class='alert alert-danger' style='position:absolute;width:40%;bottom:-500px;opacity:0.8;left:610px;' id='mydiv' role='alert'><center><span class='glyphicon glyphicon-remove' aria-hidden='true'> </span> <b>Erro ao atualizar os dados!</b></center></div>";
+                    break;
+         }
 
 
         ?>
@@ -295,7 +293,7 @@
                 <div class="col-lg-12">
                 <form action="" method="post">
                     <label>Buscar</label>
-                    <input type="text" class="form-control" name="buscar" placeholder="Digite um nome/cpf..." required="required"><br>
+                    <input type="text" class="form-control" name="buscar" placeholder="Digite um nome/cpf..." required="required">
                     <button type="submit" value="buscar" class="btn btn-success">Buscar</button>
                 </form>
                 <?php
@@ -337,13 +335,20 @@
                         <a href="#" data-toggle="modal" data-target=".bd-edit-modal-lg<?php echo $id;?>" data-toggle="modal" title="Editar">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
+
                         <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg<?php echo $id;?>" title="Excluir">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                         <a href="#" data-toggle="modal" data-target=".bd-info-modal-lg<?php echo $id;?>" title="Mais Informações">
+                        <a href="../files/excluir.php?id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                        <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </a>
-                       
+                        <a href="home.php?go=email&id=<?php echo $id; ?>" data-toggle="modal" title="Enviar Email">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        </a>
                     </th>
                 </tr>
                     <!-- [[ MODAL EXCLUIR ]] -->
@@ -604,7 +609,9 @@ if ($idPessoaJ == $id) { ?>
                         <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         </a>
-                        
+                        <a href="home.php?go=email&id=<?php echo $id; ?>" data-toggle="modal" title="Enviar Email">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        </a>
                     </th>
                 </tr>
             <?php endwhile; ?>

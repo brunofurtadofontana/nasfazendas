@@ -29,6 +29,12 @@ switch ($funcao) {
     case 8:
         excluirSubCat();
         break;
+    case 9:
+        editarSubCat();
+        break;
+    case 10:
+        editarCat();
+        break;
     
     default:
         # code...
@@ -253,7 +259,7 @@ function excluirSubCat(){
 
         $exclui_idSub = $_GET['id'];
 
-        $res = mysql_query("DELETE FROM subcategoria WHERE  subcat_id = '$exclui_id' ")or die(mysql_error());
+        $res = mysql_query("DELETE FROM subcategoria WHERE  subcat_id = '$exclui_idSub' ")or die(mysql_error());
         if($res){
            mysql_error();
         }
@@ -261,7 +267,24 @@ function excluirSubCat(){
         header("Location:../pages/categoria.php");
 
 }
-
+function editarSubCat(){
+        $editarNomeSubCat = $_POST['nomeSub'];
+        $editarIdSubCat = $_POST['id'];
+        $res = mysql_query("UPDATE subcategoria SET subcat_nome = '$editarNomeSubCat' WHERE subcat_id = '$editarIdSubCat'")or die(mysql_error());
+        if($res){
+           mysql_error();
+        }
+        header("Location:../pages/categoria.php");
+}
+function editarCat(){
+        $editarNomeCat = $_POST['nome'];
+        $editarIdCat = $_POST['id'];
+        $res = mysql_query("UPDATE categoria SET categoria_nome = '$editarNomeCat' WHERE categoria_id = '$editarIdCat'")or die(mysql_error());
+        if($res){
+           mysql_error();
+        }
+        header("Location:../pages/categoria.php");
+}
 
 
 
