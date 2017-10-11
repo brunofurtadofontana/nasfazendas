@@ -272,6 +272,7 @@
             <div class="row">
                 <div class="col-lg-12">
                         <?php 
+                        error_reporting(0);
                     $erro = $_GET['error'];
                     switch ($erro) {
                     case 0:
@@ -340,8 +341,6 @@
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                         <a href="#" data-toggle="modal" data-target=".bd-info-modal-lg<?php echo $id;?>" title="Mais Informações">
-                        <a href="../files/excluir.php?id=<?php echo $id; ?>" data-toggle="modal" title="Excluir">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </a>
                         <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" title="Mais Informações">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>

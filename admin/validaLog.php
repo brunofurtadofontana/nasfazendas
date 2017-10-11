@@ -45,15 +45,15 @@
 					header("Location:index.php?erro=2");
 				}
 				else{	
-					if($senha_db != $gravaSenha2){//se a senha não for igual a que o admim cadastrou
-					header("Location:index.php?erro=1$echo $gravaSenha2");
+					if($senha_db != $gravaSenha){//se a senha não for igual a que o admim cadastrou
+					header("Location:index.php?erro=1");
 					}
 					
 						else{	
 							session_start();
 							$_SESSION["LOGIN_USUARIO"]=$gravalog;
 							$_SESSION["SENHA_USUARIO"]=$gravaSenha;
-							$_SESSION["PRIVILEGIO"]=$gravaPriv;
+							//$_SESSION["PRIVILEGIO"]=$gravaPriv;
 
 							/*$access++;
 							$atualiza = mysql_query("UPDATE  usuarios 

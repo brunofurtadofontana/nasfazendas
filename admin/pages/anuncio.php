@@ -6,6 +6,7 @@
     $res = mysql_query("SELECT *from usuario as u JOIN pessoa_fisica as pf WHERE usu_email = '$email' AND u.usu_id = pf.usuario_usu_id " );
     $show = mysql_fetch_assoc($res);
     $nomePF = $show['pessoaFisica_nome'];
+    $id = $show['usu_id'];
    // $nomeJUR = $show['pessoa_jur_nomeFantasia'];
 
 
@@ -273,8 +274,17 @@
                             <i class="fa fa-cloud-upload fa-fw"></i> Cadastrar novo anúncio?
                         </button>
                    </center>
-
-                 <form action="../files/Funcoes.php?funcao=5" method="post" enctype="multipart/form-data">
+                    <label>Pagamento</label>
+                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                    <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                    <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
+                    <input type="hidden" name="iot" value="button" />
+                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                    </form>
+                    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                 <form action="../files/Funcoes.php?funcao=5&id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
                             <label>Título do anúncio</label>
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
@@ -284,6 +294,15 @@
                             <label>Categoria</label>
                             <select name="categoria" class="form-control">
                                 <option>Escolha uma categoria</option>
+                                <?php 
+                                    $res = mysql_query("SELECT * from categoria")or die(mysql_error());
+                                    while ($mostrar=mysql_fetch_assoc($res)) { 
+                                        $cidade= $mostrar['categoria_nome'];
+                                    ?>
+                                        <option value="<?php echo $cidade?>"><?php echo $cidade; ?></option>
+                                  <?php      
+                                    }
+                                ?>
                             </select>
                              <label>Escolha foto</label>
                             <div style="width:98%;height:150px;background-color: #f6f7f8;padding:10px 10px;margin:10px 10px;border:2px dashed #ccc; display:table;">
@@ -320,18 +339,88 @@
                             <input type="hidden" name="id" value="<?php echo $id ?>"/>
                             <input type="submit" name="Enviar" class="btn btn-success">
                         </form>
+
+                        <!-- [[ LISTANDO ANUNCiOS ]]-->
+                        <hr>
+                        <h2>Buscar anúncios</h2>
+                        <hr>
+                        <form action="" method="post">
+                            <input type="text" class="form-control" name="buscar" placeholder="Titulo,valor,data..." required="required"><br>
+                            <button type="submit" value="buscar" class="btn btn-success">Buscar</button>
+                        </form>
+                        <?php
+                            if(!isset($_POST['buscar'])){
+                        ?>
+                        <hr>
+                        <h2>Últimos anúncios</h2>
+                        <hr>
+                        <table class="table table-bordered" style="font-size:14px;margin-top:20px;">
+                        <tr>
+                            <th style="text-align:center;">#id</th>
+                            <th style="text-align:center;">Titulo</th>
+                            <th style="text-align:center;">Descrição</th>
+                            <th style="text-align:center;">Preço</th>
+                            <th style="text-align:center;" >Data Postagem</th>
+                            <th style="text-align:center;">Data Expira</th>
+                            <th style="text-align:center;">Status</th>
+                            <th style="text-align:center;">Total Imagens</th>
+                            <th style="text-align:center;">Ação</th>
+                        </tr>
+                        <?php 
+
+                            $res =mysql_query("SELECT *FROM anuncio LIMIT 20")or die(mysql_error());
+                            while($mostrar = mysql_fetch_assoc($res)):
+                                $id = $mostrar['anuncio_id'];
+                                $titulo = $mostrar['anuncio_titulo'];
+                                $desc = $mostrar['anuncio_desc'];
+                                $valor = $mostrar['anuncio_valor'];
+                                $data = $mostrar['anuncio_datainicial'];
+                                $data = date('d-m-Y', strtotime($data));
+                                $dataFinal = $mostrar['anuncio_datafinal'];
+                                $dataFinal = date('d-m-Y', strtotime($dataFinal));
+                                $forma = $mostrar['anuncio_formPag'];
+
+                                $resImg = mysql_query("SELECT COUNT(*) as total FROM img_produto WHERE anuncio_anuncio_id = '$id'")or die(mysql_error());
+                                $mostrarImg = mysql_fetch_assoc($resImg);
+                                $totalImg = $mostrarImg['total'];
+
+
+                        ?>
+                         <tr>
+                            <th > <?php echo $id ?> </th>
+                            <th > <?php echo $titulo ?> </th>
+                            <th > <?php echo $desc; ?> </th>
+                            <th > <?php echo $valor;  ?> </th> 
+                            <th > <?php echo $data; ?> </th>
+                            <th > <?php echo $dataFinal; ?> </th>
+                            <th > <?php echo $forma; ?> </th>
+                            <th > <?php echo "Imagens ( " .$totalImg." )"; ?> </th>
+                            <th style="text-align:center;">
+                                <a href="../files/editar.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                                <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" title="Excluir">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                                <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" data-target=".bd-info-modal-lg" title="Mais Informações">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                </a>
+                               
+                            </th>
+                        </tr>
+                        <?php 
+                            endwhile;
+                        }else{
+                             echo "<small>Nunhum resultado encontrado</small>"; ?>
+                            <br>
+                            <a href="anuncio.php"><button class="btn btn-primary" >Voltar</button></a>
+                       <?php }
+
+                         ?>
+
                 </div><!-- /#col-lg12 -->
             </div> <!-- /#row -->
-                    <label>Pagamento</label>
-                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                    <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
-                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                    <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
-                    <input type="hidden" name="iot" value="button" />
-                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                    </form>
-                    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
-                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                   
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
