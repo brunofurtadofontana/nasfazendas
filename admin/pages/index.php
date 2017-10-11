@@ -238,10 +238,6 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="favorito.php"><i class="fa fa-gittip fa-fw"></i>Meus Favoritos</a>
-                           
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>Usuários<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
