@@ -122,14 +122,14 @@
         </button>
       </div>
         <div style="width:auto;height:30px;padding-left:10px;">
-          <small style="padding:10px; ">Tipo de cadastro</small><br>  
-          <input type="radio" name="tipo" id="pessoafisica" value="pessoafisica" checked="checked">Pessoa Física
-            <input type="radio" name="tipo" id="pessoajuridica" value="pessoajuridica">Pessoa Jurídica <br>
+          <small style="padding:10px;">Tipo de cadastro</small><br>  
+          <input type="radio" name="tipo" id="pessoafisica" value="pessoafisica" checked="checked"> Pessoa Física
+            <input type="radio" name="tipo" id="pessoajuridica" value="pessoajuridica"> Pessoa Jurídica <br>
          </div>
         <form class="cadas" action="files/Funcoes.php?funcao=1" method="post" id="pessoafisicaform">
             
             <div class="form-group">
-              <input class="form-control" type="text" name="nome" placeholder="Nome" required="required" />
+              <br><input class="form-control" type="text" name="nome" placeholder="Nome" required="required" />
             </div>
             <div class="form-group">
               <input class="form-control" type="email" name="email" placeholder="Email" required="required"  />
@@ -155,7 +155,7 @@
                 </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite o CPF no formato 000.000.000-00" required="required" />
+              <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF"  title="Digite o CPF no formato 000.000.000-00" required="required" />
             </div>
             <div class="form-group">
               <input class="form-control" type="password" name="senha" placeholder="Senha" required="required"  />
@@ -169,7 +169,7 @@
             
            
             <div class="form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email" required="required"  />
+              <br><input class="form-control" type="email" name="email" placeholder="Email" required="required"  />
             </div>
             <div class="row">
                 <div class="col-6">
