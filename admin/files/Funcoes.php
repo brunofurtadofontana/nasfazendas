@@ -38,6 +38,9 @@ switch ($funcao) {
     case 11:
         alterarProfile();
         break;
+    case 12:
+        uploadFoto();
+        break;
     
     default:
         # code...
@@ -248,6 +251,61 @@ function alterar(){
                           header("Location:../pages/usuario.php?error=1");
                             
                         }
+}
+function uploadFoto(){
+        $id = $_GET['id'];
+        $target_dir = "uploadsProfile/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $foto = $_FILES["fileToUpload"]["name"];
+        $uploadOk = 1;
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+                echo "O arquivo é uma imagem - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "O arquivo não é uma imagem.";
+                $uploadOk = 0;
+            }
+        }
+        // Check if file already exists
+        else if (file_exists($target_file)) {
+            echo "Desculpe, Seu aqruivo já existe.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        else if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Desculpe, sua imagen é muito grande.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        else if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Desculpe, é aceito apenas aquivos do tipo JPG, JPEG, PNG & GIF.";
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Desculpe, seu arquivo não foi carregado.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                echo "A imagen". basename( $_FILES["fileToUpload"]["name"]). " foi carregado.";
+                
+                $pegaId = mysql_query("SELECT usu_id from usuario WHERE usu_id = '$id'")or die(mysql_error());
+                $mostrarFis = mysql_fetch_assoc($pegaId);
+                $showId = $mostrarFis['usu_id'];
+                if($id == $showId){
+                    $sql = mysql_query("UPDATE usuario SET usu_foto = '$foto' WHERE usuario.usu_id = '$id'")or die(mysql_error());
+                    header("Location:../pages/profile.php");
+                }
+            }else {
+                echo "Desculpe, houve um erro ao carregar seu arquivo.";
+
+            }
+        }
 }
 function alterarProfile(){
     $id = $_GET['id'];

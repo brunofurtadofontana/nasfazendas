@@ -35,6 +35,15 @@ body{
     float:left;
     margin:10px;   
 }
+.foto{
+      background-color: blue;
+      height: 100px;
+      position: absolute;
+      top: 50px;
+      right: 300px;
+      width: 100px;
+
+}
 header{
     margin:0 auto;
     padding:0 auto;
