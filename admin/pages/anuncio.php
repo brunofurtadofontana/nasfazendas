@@ -274,17 +274,28 @@
                             <i class="fa fa-cloud-upload fa-fw"></i> Cadastrar novo anúncio?
                         </button>
                    </center>
-                    <label>Pagamento</label>
-                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                    <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
-                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                    <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
-                    <input type="hidden" name="iot" value="button" />
-                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                    </form>
-                    <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
-                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
-                 <form action="../files/Funcoes.php?funcao=5&id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+                   <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                              </div>
+                              <div class="modal-body">
+                                    <label>Pagamento</label>
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                            <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
+                            <input type="hidden" name="iot" value="button" />
+                            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/pagamentos/209x48-pagar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                            </form>
+                            <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                         <form action="../files/Funcoes.php?funcao=5&id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
                             <label>Título do anúncio</label>
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
@@ -336,9 +347,20 @@
                                     }
                                 ?>
                             </select>
+                            <br>
                             <input type="hidden" name="id" value="<?php echo $id ?>"/>
                             <input type="submit" name="Enviar" class="btn btn-success">
                         </form>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                    
 
                         <!-- [[ LISTANDO ANUNCiOS ]]-->
                         <hr>
@@ -368,7 +390,7 @@
                         </tr>
                         <?php 
 
-                            $res =mysql_query("SELECT *FROM anuncio LIMIT 20")or die(mysql_error());
+                            $res =mysql_query("SELECT *FROM anuncio ORDER BY anuncio_id DESC LIMIT 10")or die(mysql_error());
                             while($mostrar = mysql_fetch_assoc($res)):
                                 $id = $mostrar['anuncio_id'];
                                 $titulo = $mostrar['anuncio_titulo'];
@@ -408,13 +430,85 @@
                                
                             </th>
                         </tr>
+                   
                         <?php 
                             endwhile;
                         }else{
-                             echo "<small>Nunhum resultado encontrado</small>"; ?>
+                         ?>
+                            <h2>Resultado Busca...</h2>
+                        <hr>
+                        <table class="table table-bordered" style="font-size:14px;margin-top:20px;">
+                        
+                        <?php 
+                            $busca = $_POST['buscar'];
+                            $res =mysql_query("SELECT *FROM anuncio WHERE anuncio_titulo LiKE '%$busca%' OR anuncio_valor LIKE '%$busca%' OR anuncio_datainicial LIKE '%$busca%' ORDER BY anuncio_id DESC")or die(mysql_error());
+                            $return = mysql_num_rows($res);
+                            if($return > 0){ ?>
+
+                            <tr>
+                            <th style="text-align:center;">#id</th>
+                            <th style="text-align:center;">Titulo</th>
+                            <th style="text-align:center;">Descrição</th>
+                            <th style="text-align:center;">Preço</th>
+                            <th style="text-align:center;" >Data Postagem</th>
+                            <th style="text-align:center;">Data Expira</th>
+                            <th style="text-align:center;">Status</th>
+                            <th style="text-align:center;">Total Imagens</th>
+                            <th style="text-align:center;">Ação</th>
+                        </tr>
+                        <?php
+                            while($mostrar = mysql_fetch_assoc($res)):
+                                $id = $mostrar['anuncio_id'];
+                                $titulo = $mostrar['anuncio_titulo'];
+                                $desc = $mostrar['anuncio_desc'];
+                                $valor = $mostrar['anuncio_valor'];
+                                $data = $mostrar['anuncio_datainicial'];
+                                $data = date('d-m-Y', strtotime($data));
+                                $dataFinal = $mostrar['anuncio_datafinal'];
+                                $dataFinal = date('d-m-Y', strtotime($dataFinal));
+                                $forma = $mostrar['anuncio_formPag'];
+
+                                $resImg = mysql_query("SELECT COUNT(*) as total FROM img_produto WHERE anuncio_anuncio_id = '$id'")or die(mysql_error());
+                                $mostrarImg = mysql_fetch_assoc($resImg);
+                                $totalImg = $mostrarImg['total'];
+
+
+                        ?>
+
+                         <tr>
+                            <th > <?php echo $id ?> </th>
+                            <th > <?php echo $titulo ?> </th>
+                            <th > <?php echo $desc; ?> </th>
+                            <th > <?php echo $valor;  ?> </th> 
+                            <th > <?php echo $data; ?> </th>
+                            <th > <?php echo $dataFinal; ?> </th>
+                            <th > <?php echo $forma; ?> </th>
+                            <th > <?php echo "Imagens ( " .$totalImg." )"; ?> </th>
+                            <th style="text-align:center;">
+                                <a href="../files/editar.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                                <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" title="Excluir">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                                <a href="home.php?go=info&id=<?php echo $id; ?>" data-toggle="modal" data-target=".bd-info-modal-lg" title="Mais Informações">
+                                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                </a>
+                               
+                            </th>
+                        </tr>
+                            
+                        <?php 
+
+                        endwhile; ?>
                             <br>
                             <a href="anuncio.php"><button class="btn btn-primary" >Voltar</button></a>
-                       <?php }
+                       <?php 
+                            }else{
+                                echo "<small>Nenhum registro encontrado...</small>";
+                                echo '<a href="anuncio.php"><button class="btn btn-primary" >Voltar</button></a>';
+                            }
+                        }
 
                          ?>
 
