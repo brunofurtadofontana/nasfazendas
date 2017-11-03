@@ -299,7 +299,7 @@ function uploadFoto(){
                 $showId = $mostrarFis['usu_id'];
                 if($id == $showId){
                     $sql = mysql_query("UPDATE usuario SET usu_foto = '$foto' WHERE usuario.usu_id = '$id'")or die(mysql_error());
-                    header("Location:../pages/profile.php");
+
                 }
             }else {
                 echo "Desculpe, houve um erro ao carregar seu arquivo.";

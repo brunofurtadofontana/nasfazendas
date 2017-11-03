@@ -114,9 +114,6 @@ header{
     background-color: #fff;
     float:left;
 }
-.face{
-    
-}
 footer{
     color:#fff;
     padding:10px;
@@ -125,17 +122,11 @@ footer{
     background-color: #275b2f;
     float:left;
 }
-.envelope{
-    margin:0 auto;
-    padding:0 auto;
-    width:90%;
-    height: auto;
-
-}
-.btn{
-    position:absolute;
-    height: 35px;
-    background: #275b2f;
-    margin-top:25px;
-    color:#fff;
+.foto{
+      background-color: blue;
+      height: 100px;
+      position: absolute;
+      top: 50px;
+      right: 300px;
+      width: 100px;
 }
