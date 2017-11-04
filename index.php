@@ -16,6 +16,7 @@
   
 </head>
 <body>
+
 	<div class="row-fluid">
 		<header>
 			<div class="logo col-md-3">
@@ -28,17 +29,20 @@
 					<input type="text" class="form-control input-sm" maxlength="64" placeholder="Olá, o que você procura?" />
           <button class="btn">Buscar</button>
 
+
 		 </div>
 				
 			<div class="user col-md-3">
 				<span><a href="#"> \/ Olá Visitante</a></span>
 			</div>
+        
 		</header>
 			<div id='cssmenu'>
       <ul>
          <li><a href='#'>Home</a></li>
          <li class='active'><a href='#'>Máquinarios</a>
             <ul>
+              
                <li><a href='#'>Tratores</a>
                   <ul>
                      <li><a href='#'>Pesados</a></li>
@@ -87,6 +91,7 @@
           <img src="images/loader.gif"  />
       </div>
     </div>
+    
     <div class="row social">
           <div class="face col-md-4">
             <span class="title">Redes Sociais</span>
@@ -108,5 +113,25 @@
 	<!-- jQuery (necessario para os plugins Javascript do Bootstrap) -->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+
+                        <div class="modal fade modalFeedback" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                                <div class="modal-content" style="padding:5px 5px;padding-right:25px;">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title">Deletar Sub-Categoria</h2>
+                                                            </div>
+                                                                <p style="font-size:16px;">Tem certeza que deseja deletar a Sub-Categoria <span style="padding:5px 5px;border:1px solid;border-radius:20px;width:auto;height:auto;"><?php echo $nomeSub ?></span> ? 
+                                                                    <a href="../files/Funcoes.php?funcao=8&id=<?php echo $idSubCat;?>">
+                                                                    <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-success">Deletar</button>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button> 
+                                                                </div>
+                                                                </a>
+                                                            </p>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+
 </body>
 </html>
