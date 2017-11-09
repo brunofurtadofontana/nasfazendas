@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Nas Fazendas</title>
+	<title>Nas Fazendas </title>
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,15 +22,15 @@
   <script type="text/javascript" src="banner/jquery-1.5.1.min.js"></script>
   <script type="text/javascript" src="banner/jquery.orbit-1.2.3.min.js"></script> 
   <script type="text/javascript">
-                  $(window).load(function() {
-                     $('#featured').orbit({
-                      "bullets" : true,
-                      "fluid" : true,
-                      "animation" : "horizontal-push",
-                      "autostart" : true,
-                      "caption" : true
-                    });
-                   });
+      $(window).load(function() {
+         $('#featured').orbit({
+          "bullets" : true,
+          "fluid" : true,
+          "animation" : "horizontal-push",
+          "autostart" : true,
+          "caption" : true
+        });
+       });
   </script>
 </head>
 <body>
