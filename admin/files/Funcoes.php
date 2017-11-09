@@ -292,16 +292,32 @@ function editarCat(){
 function adicionarAnuncio(){
 	if(isset($_FILES['files'])){
     $errors= array();
+    $file_name = md5(rand(1,999)).$_FILES['files']['name'][$key];
+    $file_size =$_FILES['files']['size'][$key];
+    $file_tmp =$_FILES['files']['tmp_name'][$key];
+    $file_type=$_FILES['files']['type'][$key];
+    $idUser = $_POST['id']; 
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['descricao'];
+    $valor= $_POST['valor'];
+    $data = date("YY/dd/mm");
+    $dataFinal = $data+10;
+    mysql_query("INSERT INTO anuncio(anuncio_titulo,
+                                              anuncio_desc,
+                                              anuncio_valor,
+                                              anuncio_datainicial,
+                                              anuncio_datafinal,
+                                              anuncio_formPag,
+                                              usuario_usu_id) 
+                                  VALUES('$titulo',
+                                         '$descricao',
+                                         '$valor',
+                                         '$data',
+                                         '$dataFinal',
+                                         '$data',
+                                         '$idUser')")or die(mysql_error());
 	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-		$file_name = md5(rand(1,999)).$_FILES['files']['name'][$key];
-		$file_size =$_FILES['files']['size'][$key];
-		$file_tmp =$_FILES['files']['tmp_name'][$key];
-		$file_type=$_FILES['files']['type'][$key];
-		$idUser = $_POST['id'];	
-        $titulo = $_POST['titulo'];
-        $descricao = $_POST['descricao'];
-        $data = date("dd/mm/aa");
-        $dataFinal = $data+10;
+		
         if($file_size > 5097152){
 			$errors[]='File size must be less than 2 MB';
         }		
@@ -317,23 +333,20 @@ function adicionarAnuncio(){
                  rename($file_tmp,$new_dir) ;				
             }
 
-             mysql_query("INSERT INTO anuncio(anuncio_titulo,
-             								  anuncio_descricao,
-             								  anuncio_valor,
-             								  anuncio_datainicial,
-             								  anuncio_datafinal,
-             								  anuncio_formPag) 
-                                  VALUES('$titulo',
-             							 '$descricao',
-             							 '$valor',
-             							 '$data',
-             							 '$dataFinal',
-             							 '$data')")or die(mysql_error());
+             
 
+             
+             $res = mysql_query("select max(anuncio_id)as maior FROM anuncio")or die(mysql_error());
+             $most = mysql_fetch_assoc($res);
+             $maxIdAnuncio = $most['maior'];
              mysql_query("INSERT into img_produto(img_nome,
-             									  img_dir)
+             									  img_dir,
+                                                  anuncio_anuncio_id,
+                                                  anuncio_usuario_usu_id)
              									  VALUES('$file_name',
-             											  '$file_type')")or die(mysql_error());
+             											  '$file_type',
+                                                          '$maxIdAnuncio',
+                                                          '$idUser')")or die(mysql_error());
 
 
             // mysql_query("INSERT INTO fotos(titulo,FILE_NAME,FILE_SIZE,FILE_TYPE,descricao,data) 
@@ -347,7 +360,7 @@ function adicionarAnuncio(){
 	if(empty($error)){
 		echo "Success";
        
-        header("Location:temp.php");
+        header("Location:../pages/anuncio.php");
 	}
 }
 }

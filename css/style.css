@@ -73,7 +73,7 @@ header{
 .banner{
     padding:10px 10px;
     width:100%;
-    height:300px;
+    height:420px;
     background: #f4f5f6;
     float:left;
 }
@@ -93,11 +93,14 @@ header{
     display:table;
 }
 .destaque{
-    margin:5px 15px;
-    width: 200px;
+    margin:1px 1px;
+    width: 24.7%;
     height:400px;
-    background: #ccc;
-    float:left;    
+    background: #fff;
+    float:left; 
+}
+.destaque:hover{
+    border:2px solid #ddd;
 }
 .load{
     margin: 0 auto;
@@ -128,7 +131,7 @@ footer{
 .envelope{
     margin:0 auto;
     padding:0 auto;
-    width:90%;
+    width:100%;
     height: auto;
 
 }
@@ -139,3 +142,62 @@ footer{
     margin-top:25px;
     color:#fff;
 }
+
+
+/*
+        
+        [[[[[Galeria de imagem Anuncio]]]]]
+
+*/
+/* example_6 css */  
+#example_6 {  
+    position: relative; /* important */  
+    overflow: hidden; /* important */  
+    width: 640px; /* important */  
+    height: 540px; /* important */  
+    margin: 0;  
+    background: #fff;  
+}  
+  
+#example_6_content {  
+    position: absolute;  
+    top: 0;  
+    margin-left: 0;  
+}  
+  
+#example_6_content  
+#example_6_content li {  
+    list-style: none;  
+    margin: 0;  
+    padding: 0;  
+}  
+    #example_6_content {  
+        width: 13440px;  
+    }  
+    #container_bd #example_6 ul li {  
+        display: block;  
+        float: left;  
+        margin: 0;  
+        padding: 0;  
+        border: none;  
+        background-color: #fff;  
+    }  
+  
+#container_bd #example_6 ul li img {  
+    display: block;  
+}  
+  
+#example_6_frame {  
+    position: relative;  
+    margin: 485px 131px 0 131px;  
+}  
+#container_bd #example_6_frame ul li {  
+    margin: 0 2px;  
+}  
+#container_bd #example_6_frame ul li img{  
+    border: 1px solid #9cf;  
+    padding: 2px;  
+}  
+    #container_bd #example_6_frame ul li img:hover {border: 1px solid #369;}  
+    
+/*FIM GALERIA IMAGEM ANUNCIO*/

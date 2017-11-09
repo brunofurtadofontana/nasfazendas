@@ -282,12 +282,12 @@
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
+                                <h4 class="modal-title">Cadastrar Anúncio</h4>
                               </div>
                               <div class="modal-body">
                                     <label>Pagamento</label>
                             <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                            <form action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+                            <form action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
                             <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
                             <input type="hidden" name="code" value="B96E83277979EA88840BBFA59371427A" />
                             <input type="hidden" name="iot" value="button" />
@@ -300,8 +300,16 @@
                             <input type="text" name="titulo" class="form-control"/>
                             <label>Descrição</label>
                             <textarea name="descricao" class="form-control"></textarea>
-                            <label>Valor</label>
-                            <input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor ="100" class="form-control currency" name="valor" placeholder="R$ Valor do produto">
+                            <div class="form-group">
+                                 <label>Valor</label> <br>
+                                <label class="sr-only" for="exampleInputAmount">Valor (in real)</label>
+                                <div class="input-group">
+
+                                  <div class="input-group-addon">$</div>
+                                  <input type="text" class="form-control" name="valor" id="exampleInputAmount" placeholder="Valor">
+                                  <div class="input-group-addon">.00</div>
+                                </div>
+                            </div>
                             <label>Categoria</label>
                             <select name="categoria" class="form-control">
                                 <option>Escolha uma categoria</option>
@@ -333,7 +341,7 @@
                                     }
                                 ?>
                             </select>
-                            <label>cidade</label>
+                            <label>Cidade</label>
                             <select name="cidade" class="form-control">
                                 <option>Escolha uma cidade</option>
 
@@ -360,7 +368,7 @@
 
                           </div>
                         </div>
-                    
+                        
 
                         <!-- [[ LISTANDO ANUNCiOS ]]-->
                         <hr>
@@ -418,7 +426,7 @@
                             <th > <?php echo $forma; ?> </th>
                             <th > <?php echo "Imagens ( " .$totalImg." )"; ?> </th>
                             <th style="text-align:center;">
-                                <a href="../files/editar.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
+                                <a href="editarAnuncio.php?id=<?php echo $id; ?>" data-toggle="modal" title="Editar">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                 </a>
                                 <a href="" data-toggle="modal" data-target=".bd-example-modal-lg" title="Excluir">

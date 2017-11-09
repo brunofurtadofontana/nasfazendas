@@ -92,7 +92,12 @@
          ?>
         <h2 class="form-signin-heading"></h2>
         <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-edit"></i>
+            </span>
           <input name="usuario" type="text" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
+          </div>
         </div>
 
         <div class="form-group">
